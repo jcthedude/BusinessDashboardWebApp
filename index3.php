@@ -45,13 +45,13 @@ require_once 'authHelper.php';
 
 // These must be set with values YOU obtains from the APIs console.
 // See the Usage section above for details.
-const REDIRECT_URL = 'http://jjcdashboardapp.azurewebsites.net/index3.php';
+const REDIRECT_URL = 'http://jjcdashboardapp.azurewebsites.net/index4.php';
 const CLIENT_ID = '925815342836.apps.googleusercontent.com';
 const CLIENT_SECRET = '7KqGnzQxESIQb8mB03Ksz2Ef';
 
 // The file name of this page. Used to create various query parameters to
 // control script execution.
-const THIS_PAGE = 'index3.php';
+const THIS_PAGE = 'index4.php';
 
 const APP_NAME = 'Google Analytics Sample Application';
 const ANALYTICS_SCOPE = 'https://www.googleapis.com/auth/analytics.readonly';
