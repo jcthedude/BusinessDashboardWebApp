@@ -45,7 +45,7 @@ require_once 'authHelper.php';
 
 // These must be set with values YOU obtains from the APIs console.
 // See the Usage section above for details.
-const REDIRECT_URL = 'http://localhost:8888/business_dashboard_app/indextest.php';
+const REDIRECT_URL = 'http://localhost:8888/business_dashboard_app/google-api-php-client/examples/analytics/demo/indextest.php';
 const CLIENT_ID = '925815342836.apps.googleusercontent.com';
 const CLIENT_SECRET = '7KqGnzQxESIQb8mB03Ksz2Ef';
 
