@@ -1,13 +1,6 @@
 <?php
 
-//Google Analytics API variables
-$client_id                  = '925815342836.apps.googleusercontent.com';
-$client_secret              = '7KqGnzQxESIQb8mB03Ksz2Ef';
-$redirect_uri               = 'http://localhost:8888/business_dashboard_app/google_analytics_api.php';
-$api_key                    = 'AIzaSyCKp12gtsmUTAGPIQL0um_zlLgT03CJHg4';
-$selected_profile           = '69242945';
-$max_results                = '100';
-
+include_once('config.php');
 
 /*https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=925815342836.apps.googleusercontent.com
 &redirect_uri=http://localhost:8888/business_dashboard_app/google_analytics_api.php&access_type=offline
@@ -53,12 +46,12 @@ else {
 
 
 //Get account info
-if(isset($result_token['access_token'])) {
+if(isset($access_token)) {
     $url = 'https://www.googleapis.com/analytics/v3/management/accounts?key='.$api_key;
     $ch = curl_init();
     $timeout = 5;
     curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $result_token['access_token']));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $access_token));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
     $data = curl_exec($ch);
@@ -72,12 +65,12 @@ if(isset($result_token['access_token'])) {
 
 
 //Get profiles for account
-if(isset($result_token['access_token'])) {
+if(isset($access_token)) {
     $url = 'https://www.googleapis.com/analytics/v3/management/accounts/~all/webproperties/~all/profiles?key='.$api_key;
     $ch = curl_init();
     $timeout = 5;
     curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $result_token['access_token']));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $access_token));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
     $data = curl_exec($ch);
@@ -91,7 +84,8 @@ if(isset($result_token['access_token'])) {
 
 
 //Get visitors for last 30 days
-if(isset($result_token['access_token'])) {
+//TODO: Add variables for metrics and dimensions for easier query changes
+if(isset($access_token)) {
     $endDate = date('Y-m-d');
     $startDate = date('Y-m-d', strtotime('-30 day'));
     $total_visitors = 0;
@@ -100,7 +94,7 @@ if(isset($result_token['access_token'])) {
     $ch = curl_init();
     $timeout = 5;
     curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $result_token['access_token']));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $access_token));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
     $data = curl_exec($ch);
