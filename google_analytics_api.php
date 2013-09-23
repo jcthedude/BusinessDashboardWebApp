@@ -3,14 +3,14 @@
 //Google Analytics API variables
 $client_id                  = '925815342836.apps.googleusercontent.com';
 $client_secret              = '7KqGnzQxESIQb8mB03Ksz2Ef';
-$redirect_uri               = 'http://localhost:8888/business_dashboard_app/test4.php';
+$redirect_uri               = 'http://localhost:8888/business_dashboard_app/google_analytics_api.php';
 $api_key                    = 'AIzaSyCKp12gtsmUTAGPIQL0um_zlLgT03CJHg4';
 $selected_profile           = '69242945';
 $max_results                = '100';
 
 
 /*https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=925815342836.apps.googleusercontent.com
-&redirect_uri=http://localhost:8888/business_dashboard_app/test4.php&access_type=offline
+&redirect_uri=http://localhost:8888/business_dashboard_app/google_analytics_api.php&access_type=offline
 &scope=https://www.googleapis.com/auth/analytics.readonly*/
 
 //Get refresh token
