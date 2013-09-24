@@ -3,7 +3,7 @@
 include_once('config.php');
 
 /*https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=925815342836.apps.googleusercontent.com
-&redirect_uri=http://jjcdashboardapp.azurewebsites.net//google_analytics_api.php&access_type=offline
+&redirect_uri=http://jjcdashboardapp.azurewebsites.net/google_analytics_api.php&access_type=offline
 &scope=https://www.googleapis.com/auth/analytics.readonly*/
 
 $refresh_token = 'ya29.AHES6ZRGmIVmDXzSmFHoavjI6o2PT-esHBhX39XCrzZo7Z9tzfwxvRk';
