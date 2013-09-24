@@ -45,6 +45,7 @@ curl_close($ch);
 $result = json_decode($data, true);
 
 var_dump($result);
+echo $refresh_token;
 
 
 ////Get account info
