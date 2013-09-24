@@ -20,12 +20,9 @@ $refresh_token = '1/FLsvxj3r1lhSgCrm1Svx5_CC86wuiWwYuZ0TIzQWKPw';
 //    $data = curl_exec($ch);
 //    curl_close($ch);
 //    $result_token = json_decode($data, true);
-//    $access_token = $result_token['access_token'];
+//    $refresh_token = $result_token['access_token'];
 //
 //    var_dump($result_token);
-//    echo "<br>";
-//    var_dump($access_token);
-//    echo "<br>";
 //}
 //else {
 //    var_dump($_REQUEST, true);
@@ -44,8 +41,6 @@ $data = curl_exec($ch);
 curl_close($ch);
 $result_token = json_decode($data, true);
 $access_token = $result_token['access_token'];
-
-var_dump($result_token);
 
 
 //Get account info
