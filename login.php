@@ -60,25 +60,25 @@ if (!empty($_POST))
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>User Login</title>
-    </head>
-    <body>
-        <?php if (isset($error)): ?>
-        <p class="error"><?php echo $error; ?></p>
-        <?php endif; ?>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>User Login</title>
+</head>
+<body>
+<?php if (isset($error)): ?>
+    <p class="error"><?php echo $error; ?></p>
+<?php endif; ?>
 
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-            <fieldset id="login">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" /><br />
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <fieldset id="login">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" /><br />
 
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" /><br />
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" /><br />
 
-                <input type="submit" value="Login" />
-            </fieldset>
-        </form>
-    </body>
+        <input type="submit" value="Login" />
+    </fieldset>
+</form>
+</body>
 </html>

@@ -150,49 +150,49 @@ if (!empty($_POST) && empty($errors))
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>User Registration</title>
-    </head>
-    <body>
-        <?php if (isset($message)): ?>
-        <p class="success"><?php echo $message; ?></p>
-        <?php endif; ?>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>User Registration</title>
+</head>
+<body>
+<?php if (isset($message)): ?>
+    <p class="success"><?php echo $message; ?></p>
+<?php endif; ?>
 
-        <!-- Note that we're again checking that each array key exists before
-             trying to use it, in order to prevent undefined index notices. -->
-        <?php if (isset($errors['registration'])): ?>
-        <p class="error"><?php echo $errors['registration']; ?></p>
-        <?php endif; ?>
+<!-- Note that we're again checking that each array key exists before
+     trying to use it, in order to prevent undefined index notices. -->
+<?php if (isset($errors['registration'])): ?>
+    <p class="error"><?php echo $errors['registration']; ?></p>
+<?php endif; ?>
 
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-            <fieldset id="registration">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" />
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <fieldset id="registration">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" />
                 <span class="error">
                     <?php echo isset($errors['username']) ? $errors['username'] : ''; ?>
                 </span><br />
 
-                <label for="email">Email Address</label>
-                <input type="text" id="email" name="email" />
+        <label for="email">Email Address</label>
+        <input type="text" id="email" name="email" />
                 <span class="error">
                     <?php echo isset($errors['email']) ? $errors['email'] : ''; ?>
                 </span><br />
 
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" />
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" />
                 <span class="error">
                     <?php echo isset($errors['password']) ? $errors['password'] : ''; ?>
                 </span><br />
 
-                <label for="password_confirm">Confirm Password</label>
-                <input type="password" id="password_confirm" name="password_confirm" />
+        <label for="password_confirm">Confirm Password</label>
+        <input type="password" id="password_confirm" name="password_confirm" />
                 <span class="error">
                     <?php echo isset($errors['password_confirm']) ? $errors['password_confirm'] : ''; ?>
                 </span><br />
 
-                <input type="submit" value="Submit" />
-            </fieldset>
-        </form>
-    </body>
+        <input type="submit" value="Submit" />
+    </fieldset>
+</form>
+</body>
 </html>
