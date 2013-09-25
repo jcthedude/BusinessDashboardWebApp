@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="841239602">
+  <component name="DataSourceManagerImpl" format="xml" hash="1082696892">
     <data-source source="LOCAL" name="Data Source" product="MySQL" version="5.5.21-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.26 ( Revision: ${bzr.revision-id} )" uuid="d9f2286c-beb3-41c2-817b-2e7bd787219e">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>

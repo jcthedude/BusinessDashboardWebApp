@@ -9,4 +9,8 @@ $selected_profile           = '69242945';
 $max_results                = '100';
 
 
-//TODO: Add database connection variables
+//Database connection variables
+$db_host                    = "us-cdbr-azure-west-b.cleardb.com";
+$db_name                    = "jjcdashA6w6NQ9VA";
+$db_user                    = "bc5d4a46d2d096";
+$db_password                = "e773c370";
