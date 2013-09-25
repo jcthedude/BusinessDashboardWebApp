@@ -45,11 +45,6 @@ if (!empty($_POST))
 
         Print_r ($_SESSION);
     }
-    /**
-     * Don't provide specific details as to whether username or password was
-     * incorrect. If an attacker knows they've found a valid username, you've
-     * just made their life easier.
-     */
     else
     {
         $error = "Login failed.";

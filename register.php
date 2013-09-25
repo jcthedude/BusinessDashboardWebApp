@@ -3,11 +3,6 @@
 include_once 'password_hash.php';
 include_once 'config.php';
 
-/**
- * Don't use mysql_ functions. These are for MySQL 4.x and have been deprecated
- * since 2004. MySQLi is fine if you know you'll only be using MySQL databases.
- * PDO doesn't tie you to a specific RDBMS.
- */
 $sql = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 
 // Create an array to catch any errors in the registration form.
