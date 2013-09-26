@@ -10,7 +10,7 @@ $max_results                = '100';
 
 
 //Database connection variables
-$db_host                    = "tcp:ra6421wbsb.database.windows.net";
-$db_name                    = "jjcdashboardapp_db";
-$db_user                    = "slampana@ra6421wbsb.database.windows.net";
-$db_password                = "Campana1";
+$db_host                    = "us-cdbr-azure-west-b.cleardb.com";
+$db_name                    = "jjcdashA6w6NQ9VA";
+$db_user                    = "bc5d4a46d2d096";
+$db_password                = "e773c370";
