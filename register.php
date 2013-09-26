@@ -1,7 +1,7 @@
 <?php
 
-include 'password_hash.php';
 include 'config.php';
+include 'password_hash.php';
 
 // Create an array to catch any errors in the registration form.
 $errors = array();

@@ -1,6 +1,7 @@
 <?php
 
-session_start();
+include 'config.php';
+
 session_destroy();
 setcookie("user_id", "", $cookie_expire);
 

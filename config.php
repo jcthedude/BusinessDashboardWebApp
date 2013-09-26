@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 //Google Analytics API variables
 $client_id                  = '925815342836.apps.googleusercontent.com';
 $client_secret              = '7KqGnzQxESIQb8mB03Ksz2Ef';
