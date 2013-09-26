@@ -14,3 +14,8 @@ $db_host                    = "us-cdbr-azure-west-b.cleardb.com";
 $db_name                    = "jjcdashA6w6NQ9VA";
 $db_user                    = "bc5d4a46d2d096";
 $db_password                = "e773c370";
+$sql_conn                   = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+
+
+//Other
+$cookie_expire                     = time()+60*60*24*30;

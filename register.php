@@ -1,9 +1,7 @@
 <?php
 
-include_once 'password_hash.php';
-include_once 'config.php';
-
-$sql = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+include 'password_hash.php';
+include 'config.php';
 
 // Create an array to catch any errors in the registration form.
 $errors = array();
@@ -80,7 +78,7 @@ if (!empty($_POST))
     $query = "SELECT username, email
               FROM users
               WHERE username = :username OR email = :email";
-    $stmt = $sql->prepare($query);
+    $stmt = $sql_conn->prepare($query);
     $stmt->execute(array(
         ':username' => $_POST['username'],
         ':email' => $email
@@ -124,7 +122,7 @@ if (!empty($_POST) && empty($errors))
      */
     $query = "INSERT INTO users (username, password, email, created)
               VALUES (:username, :password, :email, NOW())";
-    $stmt = $sql->prepare($query);
+    $stmt = $sql_conn->prepare($query);
     $success = $stmt->execute(array(
         ':username' => $_POST['username'],
         ':password' => $password,

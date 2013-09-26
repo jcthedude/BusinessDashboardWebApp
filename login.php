@@ -2,18 +2,15 @@
 
 session_start();
 
-include_once 'config.php';
-
-// User is already logged in. Redirect them somewhere useful.
-if (isset($_SESSION['user_id']))
-{
-    header('Location: index.php');
-    exit();
-}
-
+include 'config.php';
 include 'password_hash.php';
 
-$sql = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+// User is already logged in. Redirect them somewhere useful.
+//if (isset($_SESSION['user_id']))
+//{
+//    header('Location: index.php');
+//    exit();
+//}
 
 $hasher = new PasswordHash(8, FALSE);
 
@@ -22,9 +19,11 @@ if (!empty($_POST))
     $query = "SELECT id, password, UNIX_TIMESTAMP(created) AS salt
               FROM users
               WHERE username = :username";
-    $stmt = $sql->prepare($query);
+    $stmt = $sql_conn->prepare($query);
     $stmt->execute(array(':username' => $_POST['username']));
     $user = $stmt->fetchObject();
+
+    $remember_me = $_POST['remember_me'];
 
     /**
      * Check that the query returned a result (otherwise user doesn't exist)
@@ -32,17 +31,22 @@ if (!empty($_POST))
      */
     if ($user && $user->password == $hasher->CheckPassword($_POST['password'], $user->password))
     {
-        /**
-         * Set cookies here if/as needed.
-         * Set session data as needed. DO NOT store user's password in
-         * cookies or sessions!
-         * Redirect the user if/as required.
-         */
-        session_regenerate_id();
-        $_SESSION['user_id']   = $user->id;
-        $_SESSION['loggedIn']  = TRUE;
-        $_SESSION['signature'] = md5($user->id . $_SERVER['HTTP_USER_AGENT'] . $user->salt);
+        if ($remember_me == "on")
+        {
+            setcookie("user_id", "test", $cookie_expire);
+        }
+        else
+        {
+            session_regenerate_id();
+            $_SESSION['user_id']   = $user->id;
+            $_SESSION['loggedIn']  = TRUE;
+            $_SESSION['signature'] = md5($user->id . $_SERVER['HTTP_USER_AGENT'] . $user->salt);
+        }
 
+        echo "Cookie:";
+        print_r($_COOKIE);
+        echo "<br>";
+        echo "Session:";
         Print_r ($_SESSION);
     }
     else
@@ -71,6 +75,8 @@ if (!empty($_POST))
 
         <label for="password">Password</label>
         <input type="password" id="password" name="password" /><br />
+
+        <input type="checkbox" name="remember_me" /> Remember me <br />
 
         <input type="submit" value="Login" />
     </fieldset>

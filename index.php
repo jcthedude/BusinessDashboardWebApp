@@ -60,7 +60,7 @@
 
     <?php
 
-    include_once 'config.php';
+    include 'config.php';
 
     // Connect to database.
     try {
