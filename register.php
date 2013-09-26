@@ -3,7 +3,14 @@
 include_once 'password_hash.php';
 include_once 'config.php';
 
-$sql = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+//$sql = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+
+try {
+    $sql = new PDO("sqlsrv:server=$db_host;database=$db_name", $db_user, $db_password);
+}
+catch(Exception $e){
+    die(print_r($e));
+}
 
 // Create an array to catch any errors in the registration form.
 $errors = array();
