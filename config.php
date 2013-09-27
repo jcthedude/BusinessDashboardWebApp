@@ -20,7 +20,7 @@ $max_results                = '100';
 
 
 //Database connection variables
-$db_host                    = "wy8jcz86k9.database.windows.net";
+$db_host                    = "wy8jcz86k9.database.windows.net,1433";
 $db_name                    = "jjcdashboardapp_db";
 $db_user                    = "slampana";
 $db_password                = "Campana1";
