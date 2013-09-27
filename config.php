@@ -12,11 +12,19 @@ $max_results                = '100';
 
 
 //Database connection variables
-$db_host                    = "us-cdbr-azure-west-b.cleardb.com";
-$db_name                    = "jjcdashA6w6NQ9VA";
-$db_user                    = "bc5d4a46d2d096";
-$db_password                = "e773c370";
-$sql_conn                   = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+//$db_host                    = "us-cdbr-azure-west-b.cleardb.com";
+//$db_name                    = "jjcdashA6w6NQ9VA";
+//$db_user                    = "bc5d4a46d2d096";
+//$db_password                = "e773c370";
+//$sql_conn                   = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+
+
+//Database connection variables
+$db_host                    = "wy8jcz86k9.database.windows.net";
+$db_name                    = "jjcdashboardapp_db";
+$db_user                    = "slampana";
+$db_password                = "Campana1";
+$sql_conn                   = new PDO("sqlsrv:host=$db_host;dbname=$db_name", $db_user, $db_password);
 
 
 //Other
