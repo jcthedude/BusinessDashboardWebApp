@@ -20,11 +20,11 @@ $max_results                = '100';
 
 
 //Database connection variables
-$db_host                    = "wy8jcz86k9.database.windows.net";
+$db_server                    = "wy8jcz86k9.database.windows.net";
 $db_name                    = "jjcdashboardapp_db";
 $db_user                    = "slampana";
 $db_password                = "Campana1";
-$sql_conn                   = new PDO("sqlsrv:server=$db_host;database=$db_name", $db_user, $db_password);
+$sql_conn                   = new PDO("sqlsrv:server=$db_server;database=$db_name", $db_user, $db_password);
 
 
 //Other
