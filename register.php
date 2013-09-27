@@ -120,14 +120,19 @@ if (!empty($_POST) && empty($errors))
      * prepared statements, be sure to escape your data before passing it to
      * your query.
      */
-    $query = "INSERT INTO users (username, password, email, created)
-              VALUES (:username, :password, :email, NOW())";
-    $stmt = $sql_conn->prepare($query);
-    $success = $stmt->execute(array(
-        ':username' => $_POST['username'],
-        ':password' => $password,
-        ':email'    => $_POST['email'],
-    ));
+    try {
+        $query = "INSERT INTO users (username, password, email, created)
+                  VALUES (:username, :password, :email, NOW())";
+        $stmt = $sql_conn->prepare($query);
+        $success = $stmt->execute(array(
+            ':username' => $_POST['username'],
+            ':password' => $password,
+            ':email'    => $_POST['email'],
+        ));
+    }
+    catch(Exception $e){
+            die(var_dump($e));
+    }
 
     if ($success)
     {
