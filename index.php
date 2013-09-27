@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 
-    <title>Business Dashboard App</title>
+    <title>Business Dashboard App 1111</title>
 </head>
 <body>
 
