@@ -1,23 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="905548769">
-    <data-source source="LOCAL" name="jjcdashboardapp_db" product="Microsoft SQL Server" version="11.00.9164" jdbc-version="4.0" driver-name="Microsoft JDBC Driver 4.0 for SQL Server" driver-version="4.0.2206.100" uuid="c1019613-e065-421b-a8a6-bf2ce76f6c35">
-      <extra-name-characters>$#@</extra-name-characters>
-      <identifier-quote-string>&quot;</identifier-quote-string>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://wy8jcz86k9.database.windows.net;database=jjcdashboardapp_db</jdbc-url>
-      <user-name>slampana@wy8jcz86k9</user-name>
-      <user-password>dfe9dfcbdfc7dfdadfcbdfc4dfcbdf9b</user-password>
-      <libraries>
-        <library>
-          <url>jar://$PROJECT_DIR$/../sqljdbc4-4.0.2206.100.jar!/</url>
-        </library>
-        <library>
-          <url>file://$PROJECT_DIR$/../sqlserver-driver-license.txt</url>
-        </library>
-      </libraries>
-    </data-source>
-  </component>
-</project>
+<project version="4" />
 
