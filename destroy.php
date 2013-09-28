@@ -11,4 +11,4 @@ echo "<br>";
 echo "Session:";
 Print_r ($_SESSION);
 
-print_r(get_loaded_extensions());
+phpinfo();
