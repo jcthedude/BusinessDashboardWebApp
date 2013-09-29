@@ -1,28 +1,31 @@
 <?php
 
-include 'config.php';
+include_once("config.php");
+
+if(!loggedIn()):
+    header('Location: index.php');
+endif;
+
+print("Welcome to the members page <b>".$_SESSION["username"]."</b><br>\n");
+print("<a href=\"logout.php"."\">Logout</a>");
+echo "<br><br>";
 
 try {
-    $collection_name = "users";
-
-    // access collection
-    $collection = $db->$collection_name;
-
-    // execute query and retrieve all documents
-    $cursor = $collection->find();
+    $query = $coll->find();
 
     // iterate through the result set and print each document
-    echo $cursor->count() . ' document(s) found. <br/>';
-    foreach ($cursor as $obj) {
+    echo $query->count() . ' document(s) found. <br/>';
+    foreach ($query as $obj) {
         echo 'username: ' . $obj['username'] . '<br/>';
         echo 'password: ' . $obj['password'] . '<br/>';
         echo 'email: ' . $obj['email'] . '<br/>';
+        echo 'type: ' . $obj['type'] . '<br/>';
         echo 'created: ' . $obj['created'] . '<br/>';
         echo '<br/>';
     }
 
     // disconnect from server
-    $connection->close();
+    $conn->close();
 } catch (MongoConnectionException $e) {
     die('Error connecting to MongoDB server');
 } catch (MongoException $e) {

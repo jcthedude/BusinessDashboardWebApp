@@ -1,6 +1,9 @@
 <?php
 
+include_once("functions.php");
 session_start();
+ob_start();
+error_reporting(E_ALL);
 
 //Google Analytics API variables
 $client_id                  = '925815342836.apps.googleusercontent.com';
@@ -11,9 +14,8 @@ $selected_profile           = '69242945';
 $max_results                = '100';
 
 
-//Mongo DB connection variables
-$connection = new Mongo('mongodb://slampana:Campana1@ds041167.mongolab.com:41167/jjcdashboardapp_mongo_db');
-$db = $connection->jjcdashboardapp_mongo_db;
+//Other
+$cookie_expire              = time()+60*60*24*30;
 
 
 //Database connection variables
@@ -32,5 +34,16 @@ $db = $connection->jjcdashboardapp_mongo_db;
 //$sql_conn                   = new PDO("sqlsrv:server=$db_server;database=$db_name", $db_user, $db_password);
 
 
-//Other
-$cookie_expire                     = time()+60*60*24*30;
+try
+{
+    $conn                   = new Mongo('mongodb://slampana:Campana1@ds041167.mongolab.com:41167/jjcdashboardapp_mongo_db');
+    $db                     = $conn->jjcdashboardapp_mongo_db;
+    $coll                   = $db->users;
+}
+catch (MongoConnectionException $e)
+{
+    die('Error connecting to MongoDB server');
+}
+catch (MongoException $e) {
+    die('Error: ' . $e->getMessage());
+}
