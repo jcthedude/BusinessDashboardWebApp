@@ -31,6 +31,7 @@ function flushMemberSession()
 {
     unset($_SESSION["username"]);
     unset($_SESSION["loggedIn"]);
+    unset($_SESSION["signature"]);
     session_destroy();
     return true;
 }
