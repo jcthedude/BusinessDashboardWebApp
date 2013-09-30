@@ -38,7 +38,7 @@ function flushMemberSession()
 
 function loggedIn()
 {
-    if($_SESSION['loggedIn']):
+    if(!empty($_SESSION['loggedIn'])):
         return true;
     else:
         return false;
