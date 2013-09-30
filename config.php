@@ -1,9 +1,8 @@
 <?php
 
 include_once("functions.php");
+
 session_start();
-ob_start();
-error_reporting(E_ALL);
 
 //Google Analytics API variables
 $client_id                  = '925815342836.apps.googleusercontent.com';
@@ -13,11 +12,6 @@ $api_key                    = 'AIzaSyCKp12gtsmUTAGPIQL0um_zlLgT03CJHg4';
 $selected_profile           = '69242945';
 $max_results                = '100';
 
-
-//Other
-$cookie_expire              = time()+60*60*24*30;
-
-
 //Database connection variables
 //$db_host                    = "us-cdbr-azure-west-b.cleardb.com";
 //$db_name                    = "jjcdashA6w6NQ9VA";
@@ -25,14 +19,12 @@ $cookie_expire              = time()+60*60*24*30;
 //$db_password                = "e773c370";
 //$sql_conn                   = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 
-
 //Database connection variables
 //$db_server                    = "wy8jcz86k9.database.windows.net";
 //$db_name                    = "jjcdashboardapp_db";
 //$db_user                    = "slampana";
 //$db_password                = "Campana1";
 //$sql_conn                   = new PDO("sqlsrv:server=$db_server;database=$db_name", $db_user, $db_password);
-
 
 try
 {

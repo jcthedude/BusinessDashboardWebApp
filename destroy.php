@@ -2,8 +2,11 @@
 
 include 'config.php';
 
+unset($_SESSION["username"]);
+unset($_SESSION["loggedIn"]);
+unset($_SESSION["signature"]);
 session_destroy();
-setcookie("user_id", "", $cookie_expire);
+setcookie("signature", "", time()-3600);
 
 echo "Cookie:";
 print_r($_COOKIE);
