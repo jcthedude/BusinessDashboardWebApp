@@ -1,6 +1,6 @@
 <?php
 
-include_once("functions.php");
+include_once("func.user.php");
 
 session_start();
 
@@ -39,3 +39,5 @@ catch (MongoConnectionException $e)
 catch (MongoException $e) {
     die('Error: ' . $e->getMessage());
 }
+
+?>

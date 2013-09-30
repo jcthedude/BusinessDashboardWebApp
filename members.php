@@ -1,6 +1,6 @@
 <?php
 
-include_once("config.php");
+include_once("modules/config.php");
 
 if(!loggedIn()):
     header('Location: login.php');
@@ -32,3 +32,5 @@ else:
         die('Error: ' . $e->getMessage());
     }
 endif;
+
+?>

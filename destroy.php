@@ -1,6 +1,6 @@
 <?php
 
-include 'config.php';
+include 'modules/config.php';
 
 unset($_SESSION["username"]);
 unset($_SESSION["loggedIn"]);
@@ -15,3 +15,5 @@ echo "Session:";
 Print_r ($_SESSION);
 
 phpinfo();
+
+?>

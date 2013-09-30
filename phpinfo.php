@@ -1,6 +1,6 @@
 <?php
 
-include_once("config.php");
+include_once("modules/config.php");
 
 echo "Cookie:";
 print_r($_COOKIE);
@@ -9,3 +9,5 @@ echo "Session:";
 Print_r ($_SESSION);
 
 phpinfo();
+
+?>

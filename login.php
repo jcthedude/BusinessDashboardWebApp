@@ -1,7 +1,7 @@
 <?php
 
-include_once("config.php");
-include_once("password_hash.php");
+include_once("modules/config.php");
+include_once("modules/class.user.php");
 
 if(loggedIn()):
     header('Location: members.php');
@@ -21,6 +21,7 @@ if(isset($_POST["submit"])):
         $error = "Incorrect login/password, try again";
     endif;
 endif;
+
 ?>
 <html>
 <head>

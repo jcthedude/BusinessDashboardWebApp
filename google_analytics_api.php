@@ -1,6 +1,6 @@
 <?php
 
-include ('config.php');
+include('modules/config.php');
 
 /*https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=925815342836.apps.googleusercontent.com
 &redirect_uri=http://localhost:8888/business_dashboard_app/google_analytics_api.php&access_type=offline

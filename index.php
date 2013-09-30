@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
 
     <title>Business Dashboard App 1111</title>
 </head>
@@ -57,65 +57,11 @@
             </form>
         </div><!-- /col-lg-4 -->
     </div><!-- /row -->
-
-<!--    --><?php
-//
-//    include 'config.php';
-//
-//    // Connect to database.
-//    try {
-//        $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
-//        $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-//    }
-//    catch(Exception $e){
-//        die(var_dump($e));
-//    }
-//    // Insert registration info
-//    if(!empty($_POST)) {
-//        try {
-//            $name = $_POST['name'];
-//            $email = $_POST['email'];
-//            $date = date("Y-m-d");
-//            // Insert data
-//            $sql_insert = "INSERT INTO registration_tbl (name, email, date)
-//                   VALUES (?,?,?)";
-//            $stmt = $conn->prepare($sql_insert);
-//            $stmt->bindValue(1, $name);
-//            $stmt->bindValue(2, $email);
-//            $stmt->bindValue(3, $date);
-//            $stmt->execute();
-//        }
-//        catch(Exception $e) {
-//            die(var_dump($e));
-//        }
-//        echo "<h3>Your're registered!</h3>";
-//    }
-//    // Retrieve data
-//    $sql_select = "SELECT * FROM registration_tbl";
-//    $stmt = $conn->query($sql_select);
-//    $registrants = $stmt->fetchAll();
-//    if(count($registrants) > 0) {
-//        echo "<h2>People who are registered:</h2>";
-//        echo "<table>";
-//        echo "<tr><th>Name</th>";
-//        echo "<th>Email</th>";
-//        echo "<th>Date</th></tr>";
-//        foreach($registrants as $registrant) {
-//            echo "<tr><td>".$registrant['name']."</td>";
-//            echo "<td>".$registrant['email']."</td>";
-//            echo "<td>".$registrant['date']."</td></tr>";
-//        }
-//        echo "</table>";
-//    } else {
-//        echo "<h3>No one is currently registered.</h3>";
-//    }
-//    ?>
-
 </div><!-- /.container -->
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="//code.jquery.com/jquery.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 </body>
 </html>

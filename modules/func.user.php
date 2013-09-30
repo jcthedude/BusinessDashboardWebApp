@@ -44,3 +44,5 @@ function loggedIn()
         return false;
     endif;
 }
+
+?>
