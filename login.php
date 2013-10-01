@@ -11,9 +11,9 @@ endif;
 $hasher = new PasswordHash(8, FALSE);
 
 if(isset($_POST["submit"])):
-    $results = $coll->findOne(array('username' => $_POST['username']));
+    $query = $coll->findOne(array('username' => $_POST['username']));
 
-    if (isset($results['password']) && $results['password'] == $hasher->CheckPassword($_POST['password'], $results['password'])):
+    if (isset($query['password']) && $query['password'] == $hasher->CheckPassword($_POST['password'], $query['password'])):
         cleanMemberSession($_POST["username"], $_POST["remember_me"]);
         header("Location: members.php");
         exit();

@@ -16,11 +16,14 @@ else:
         // iterate through the result set and print each document
         echo $query->count() . ' document(s) found. <br/>';
         foreach ($query as $obj) {
+            echo '_id: ' . $obj['_id'] . '<br/>';
             echo 'username: ' . $obj['username'] . '<br/>';
             echo 'password: ' . $obj['password'] . '<br/>';
             echo 'email: ' . $obj['email'] . '<br/>';
             echo 'type: ' . $obj['type'] . '<br/>';
             echo 'created: ' . $obj['created'] . '<br/>';
+            echo 'modified: ' . $obj['modified'] . '<br/>';
+            echo 'token: ' . $obj['token'] . '<br/>';
             echo '<br/>';
         }
 

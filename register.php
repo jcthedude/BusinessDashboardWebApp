@@ -35,14 +35,15 @@ endif;
 if (isset($_POST["submit"]) && empty($errors)):
     $hasher = new PasswordHash(8, FALSE);
     $password = $hasher->HashPassword($_POST['password']);
+    $token = md5(uniqid(mt_rand(), true));
 
     $query = $coll->findOne(array('$or' => array(
         array('username' => $_POST['username']),
-        array('email' => $_POST['email'])
+        array('email' => $_POST['email']),
     )));
 
-    if(empty($query)):
-        newUser($_POST["username"], $password, $_POST["email"], time(), "member");
+    if (empty($query)):
+        newUser($_POST["username"], $password, $_POST["email"], time(), $token);
         cleanMemberSession($_POST["username"], $_POST["remember_me"]);
         header("Location: members.php");
     elseif ($query['username'] == $_POST['username']):
