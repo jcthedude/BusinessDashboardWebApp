@@ -7,7 +7,8 @@ if(!loggedIn()):
     exit();
 else:
     print("Welcome to the members page <b>".$_SESSION["username"]."</b><br>\n");
-    print("<a href=\"logout.php"."\">Logout</a>");
+    print("<a href=\"logout.php"."\">Logout</a></br>");
+    print("<a href=\"password-change.php"."\">Change Password</a>");
     echo "<br><br>";
 
     try {
@@ -26,9 +27,6 @@ else:
             echo 'token: ' . $obj['token'] . '<br/>';
             echo '<br/>';
         }
-
-        // disconnect from server
-        $conn->close();
     } catch (MongoConnectionException $e) {
         die('Error connecting to MongoDB server');
     } catch (MongoException $e) {

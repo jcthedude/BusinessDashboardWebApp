@@ -43,7 +43,7 @@ if (isset($_POST["submit"]) && empty($errors)):
     )));
 
     if (empty($query)):
-        newUser($_POST["username"], $password, $_POST["email"], time(), $token);
+        newUser($_POST["username"], $password, $_POST["email"], $token);
         cleanMemberSession($_POST["username"], $_POST["remember_me"]);
         header("Location: members.php");
     elseif ($query['username'] == $_POST['username']):
@@ -57,7 +57,7 @@ endif;
 
 <html>
 <head>
-    <title>Simple Authentication with MongoDB</title>
+    <title>Simple Register with MongoDB</title>
 </head>
 <body>
 <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST">

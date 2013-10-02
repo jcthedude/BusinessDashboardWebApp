@@ -1,22 +1,22 @@
 <?php
 
-function newUser($username, $password, $email, $time, $token)
+function newUser($username, $password, $email, $token)
 {
     $type = "member";
 
     global $coll;
-    $coll->insert(array('username' => $username, 'password' => $password, 'email' => $email, 'type' => $type, 'created' => $time, 'modified' => $time, 'token' => $token));
+    $coll->insert(array('username' => $username, 'password' => $password, 'email' => $email, 'type' => $type, 'created' => time(), 'modified' => time(), 'token' => $token));
     return true;
 }
 
-//function getPass($username, $password)
-//{
-//    global $coll;
-//    $query = $coll->findOne(array('username' => $username, 'password' => $password));
-//    if($query):
-//        return true;
-//    endif;
-//}
+function passwordChange($username, $password, $token)
+{
+    global $coll;
+    $coll->update(array('username' => $username),
+        array('$set' => array('password' => $password, 'token' => $token, 'modified' => time()
+        )));
+    return true;
+}
 
 function cleanMemberSession($username, $remember_me)
 {
@@ -24,8 +24,7 @@ function cleanMemberSession($username, $remember_me)
     $query = $coll->findOne(array('username' => $username));
     if($query):
         $_SESSION["loggedIn"] = true;
-        $_SESSION["user"] = $query['_id'];
-        $_SESSION["token"] = $query['token'];
+        $_SESSION["username"] = $query['username'];
 
         if ($remember_me == "on"):
             setcookie("user", $query['_id'], time()+60*60*24*30);
@@ -38,9 +37,11 @@ function cleanMemberSession($username, $remember_me)
 function flushMemberSession()
 {
     unset($_SESSION["loggedIn"]);
-    unset($_SESSION["user"]);
-    unset($_SESSION["token"]);
+    unset($_SESSION["username"]);
     session_destroy();
+
+    setcookie("user", "", time()-3600);
+    setcookie("token", "", time()-3600);
     return true;
 }
 
@@ -52,6 +53,8 @@ function loggedIn()
     if(!empty($_SESSION['loggedIn'])):
         return true;
     elseif ($query):
+        $_SESSION["loggedIn"] = true;
+        $_SESSION["username"] = $query['username'];
         return true;
     else:
         return false;

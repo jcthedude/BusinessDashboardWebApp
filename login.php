@@ -23,9 +23,10 @@ if(isset($_POST["submit"])):
 endif;
 
 ?>
+
 <html>
 <head>
-    <title>Simple Authentication with MongoDB</title>
+    <title>Simple Login with MongoDB</title>
 </head>
 <body>
 <?php if (isset($error)): ?>

@@ -3,7 +3,7 @@
 include('modules/config.php');
 
 /*https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=925815342836.apps.googleusercontent.com
-&redirect_uri=http://localhost:8888/business_dashboard_app/google_analytics_api.php&access_type=offline
+&redirect_uri=http://localhost:8888/business_dashboard_app/google-analytics-api.php&access_type=offline
 &scope=https://www.googleapis.com/auth/analytics.readonly*/
 
 $refresh_token = '1/FLsvxj3r1lhSgCrm1Svx5_CC86wuiWwYuZ0TIzQWKPw';
