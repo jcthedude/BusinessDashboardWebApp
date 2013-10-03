@@ -7,8 +7,9 @@ if(!loggedIn()):
     exit();
 else:
     print("Welcome to the members page <b>".$_SESSION["username"]."</b><br>\n");
-    print("<a href=\"logout.php"."\">Logout</a></br>");
-    print("<a href=\"password-change.php"."\">Change Password</a>");
+    print("</br><a href=\"logout.php"."\">Logout</a>");
+    print("</br><a href=\"password-change.php"."\">Change Password</a>");
+    print("</br><a href=\"email-change.php"."\">Change Email Address</a>");
     echo "<br><br>";
 
     try {

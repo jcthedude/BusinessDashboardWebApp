@@ -18,6 +18,15 @@ function passwordChange($username, $password, $token)
     return true;
 }
 
+function emailChange($username, $email, $token)
+{
+    global $coll;
+    $coll->update(array('username' => $username),
+        array('$set' => array('email' => $email, 'token' => $token, 'modified' => time()
+        )));
+    return true;
+}
+
 function cleanMemberSession($username, $remember_me)
 {
     global $coll;
