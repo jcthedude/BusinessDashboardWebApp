@@ -47,12 +47,16 @@ function flushMemberSession()
 
 function loggedIn()
 {
-    global $coll;
-    $query = $coll->findOne(array('_id' => new MongoID($_COOKIE['user']), 'token' => $_COOKIE['token']));
+    $query = array();
+
+    if (!empty($_COOKIE['token'])):
+        global $coll;
+        $query = $coll->findOne(array('_id' => new MongoID($_COOKIE['user']), 'token' => $_COOKIE['token']));
+    endif;
 
     if(!empty($_SESSION['loggedIn'])):
         return true;
-    elseif ($query):
+    elseif (!empty($query)):
         $_SESSION["loggedIn"] = true;
         $_SESSION["username"] = $query['username'];
         return true;
