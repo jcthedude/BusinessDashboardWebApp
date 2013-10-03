@@ -22,6 +22,11 @@ if(isset($_POST["submit"])):
     endif;
 endif;
 
+if(isset($_POST["forgot_password"])):
+    header('Location: password-reset.php');
+    exit();
+endif;
+
 ?>
 
 <html>
@@ -64,6 +69,14 @@ endif;
             </td>
             <td>
                 <input name="submit" type="submit" value="Submit">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+            <td>
+                <input name="forgot_password" type="submit" value="Forgot Password">
             </td>
         </tr>
     </table>
