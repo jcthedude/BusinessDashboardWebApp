@@ -26,8 +26,12 @@ if (isset($_POST["submit"]) && empty($errors)):
     $token = md5(uniqid(mt_rand(), true));
 
     if ($query):
+        $old_email = $query["email"];
+
         emailChange($query["username"], $_POST['email'], $token);
         cleanMemberSession($query["username"], "on");
+        sendMail($_POST['email'], $old_email, "email-change");
+
         echo "Your email address has been changed to: " . $_POST['email'];
         print("</br><a href=\"members.php"."\">Members Area</a>");
         exit();

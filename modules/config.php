@@ -1,8 +1,15 @@
 <?php
 
 include_once("func.user.php");
+include_once("func.mail.php");
 
 session_start();
+
+//Email variables
+$from                       = 'justin.campana@gmail.com';
+$headers                    = "From:" . $from;
+$subject_emailchange        = "Your email address has been changed";
+$message_emailchange        = "This message is to inform you that your email address has been changed.";
 
 //Google Analytics API variables
 $client_id                  = '925815342836.apps.googleusercontent.com';
