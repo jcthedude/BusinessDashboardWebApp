@@ -26,7 +26,6 @@ function sendMail($email, $old_email, $message_type)
         curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($session);
         curl_close($session);
-        print_r($response);
         if (!empty($old_email)):
             $params = array(
                 'api_user' => $sendgrid_user,
@@ -44,7 +43,6 @@ function sendMail($email, $old_email, $message_type)
             curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
             $response = curl_exec($session);
             curl_close($session);
-            print_r($response);
         endif;
     endif;
 
@@ -65,7 +63,6 @@ function sendMail($email, $old_email, $message_type)
         curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($session);
         curl_close($session);
-        print_r($response);
         if (!empty($old_email)):
             $params = array(
                 'api_user' => $sendgrid_user,
@@ -83,7 +80,6 @@ function sendMail($email, $old_email, $message_type)
             curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
             $response = curl_exec($session);
             curl_close($session);
-            print_r($response);
         endif;
     endif;
 
@@ -104,7 +100,6 @@ function sendMail($email, $old_email, $message_type)
         curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($session);
         curl_close($session);
-        print_r($response);
         if (!empty($old_email)):
             $params = array(
                 'api_user' => $sendgrid_user,
@@ -122,7 +117,6 @@ function sendMail($email, $old_email, $message_type)
             curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
             $response = curl_exec($session);
             curl_close($session);
-            print_r($response);
         endif;
     endif;
     return true;
