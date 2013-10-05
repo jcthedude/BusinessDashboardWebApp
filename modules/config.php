@@ -9,13 +9,14 @@ session_start();
 $sendgrid_url               = 'http://sendgrid.com/api/mail.send.json';
 $sendgrid_user              = 'azure_fc45a5108bda2f0b000eb55eab20b9ad@azure.com';
 $sendgrid_password          = 'qokkhzi1';
-$sendgrid_from                       = 'justin.campana@gmail.com';
+$sendgrid_from              = 'justin.campana@gmail.com';
 
 //Google Analytics API variables
 $client_id                  = '925815342836.apps.googleusercontent.com';
 $client_secret              = '7KqGnzQxESIQb8mB03Ksz2Ef';
 $redirect_uri               = 'http://localhost:8888/business_dashboard_app/google-analytics-api.php';
 $api_key                    = 'AIzaSyCKp12gtsmUTAGPIQL0um_zlLgT03CJHg4';
+$get_ga_code_url            = "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=".$client_id."&redirect_uri=".$redirect_uri."&access_type=offline&scope=https://www.googleapis.com/auth/analytics.readonly";
 $selected_profile           = '69242945';
 $max_results                = '100';
 
