@@ -10,7 +10,8 @@ else:
     print("</br><a href=\"logout.php"."\">Logout</a>");
     print("</br><a href=\"password-change.php"."\">Change Password</a>");
     print("</br><a href=\"email-change.php"."\">Change Email Address</a>");
-    print("</br><a href=\"$get_ga_code_url"."\">Google Analytics</a>");
+    print("</br><a href=\"$get_ga_code_url"."\">Get Google Analytics Token</a>");
+    print("</br><a href=\"ga-get-profiles.php"."\">Choose Google Analytics Profile</a>");
     echo "<br><br>";
 
     try {
