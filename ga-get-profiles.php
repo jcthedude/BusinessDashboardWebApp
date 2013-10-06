@@ -41,59 +41,35 @@ else:
             curl_close($ch);
             $result_properties = json_decode($data, true);
 
-            foreach ($result_properties['items'] as $item):
-                $dropdown .= "<option value='" . $item['id'] . "'>" . $item['name'] . "</option>";
+            foreach ($result_properties['items'] as $obj_add):
+                $dropdown_add .= "<option value='" . $obj_add['id'] . "'>" . $obj_add['name'] . "</option>";
+            endforeach;
+
+            foreach ($query['ga_web_property'] as $obj_delete):
+                $dropdown_delete .= "<option value='" . $obj_delete['ga_property_id'] . "'>" . $obj_delete['ga_property_name'] . "</option>";
             endforeach;
         endif;
-
-//        //Get visitors for last 30 days
-//        //TODO: Add variables for metrics and dimensions for easier query changes
-//        if(isset($access_token)):
-//            $endDate = date('Y-m-d');
-//            $startDate = date('Y-m-d', strtotime('-30 day'));
-//            $total_visitors = 0;
-//
-//            $url = 'https://www.googleapis.com/analytics/v3/data/ga?ids=ga:'.$selected_profile.'&start-date='.$startDate.'&end-date='.$endDate.'&metrics=ga:visitors&dimensions=ga:date&max-results='.$max_results;
-//            $ch = curl_init();
-//            $timeout = 5;
-//            curl_setopt($ch, CURLOPT_URL, $url);
-//            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $access_token));
-//            curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-//            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-//            $data = curl_exec($ch);
-//            curl_close($ch);
-//            $result_visitors = json_decode($data, true);
-//
-//            foreach ($result_visitors['rows'] as $item) {
-//                $item['date'] = $item[0];
-//                unset($item[0]);
-//
-//                $item['visitors'] = $item[1];
-//                unset($item[1]);
-//
-//                $total_visitors += $item['visitors'];
-//
-//                echo $item['date'].'---'.$item['visitors']."<br>";
-//            }
-//
-//            echo "Total---".$total_visitors."<br>";
-//        endif;
     endif;
 
-    if(isset($_POST['property_select'])):
-        $ga_property_id = $_POST['property_select'];
+    if(isset($_POST['property_add'])):
+        $ga_property_id = $_POST['property_add'];
         $ga_property_name = "";
-
-        echo "Selected Web property ID: ".$ga_property_id;
 
         foreach ($result_properties['items'] as $item):
             if ($item['id'] === $ga_property_id):
                 $ga_property_name = $item['name'];
-                echo "Selected Web property Name: ".$item['name'];
             endif;
         endforeach;
 
         getWebProperty($query['username'], $ga_property_id, $ga_property_name);
+        echo '<script>parent.window.location.reload(true);</script>';
+    endif;
+
+    if(isset($_POST['property_delete'])):
+        $ga_property_id = $_POST['property_delete'];
+
+        deleteWebProperty($query['username'], $ga_property_id);
+        echo '<script>parent.window.location.reload(true);</script>';
     endif;
 endif;
 
@@ -101,14 +77,48 @@ endif;
 
 <html>
 <head>
-    <title>Select your Web Property</title>
+    <title>Select a Web Property</title>
 </head>
 <body>
 <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST">
-    <select name="property_select">
-        <?php echo $dropdown;?>
-    </select>
-    <input name="submit" type="submit" value="Submit">
+    <table>
+        <tr>
+            <td>
+                Select a Web Property:
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <select name="property_add">
+                    <?php echo $dropdown_add;?>
+                </select>
+            </td>
+            <td>
+                <input name="submit_select" type="submit" value="Add Property">
+                </select>
+            </td>
+        </tr>
+    </table>
+</form>
+<form action="<?=$_SERVER["PHP_SELF"];?>" method="POST">
+    <table>
+        <tr>
+            <td>
+                Delete a Web Property:
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <select name="property_delete">
+                    <?php echo $dropdown_delete;?>
+                </select>
+            </td>
+            <td>
+                <input name="submit_delete" type="submit" value="Delete Property">
+                </select>
+            </td>
+        </tr>
+    </table>
 </form>
 </body>
 </html>

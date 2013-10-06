@@ -11,7 +11,7 @@ else:
     print("</br><a href=\"password-change.php"."\">Change Password</a>");
     print("</br><a href=\"email-change.php"."\">Change Email Address</a>");
     print("</br><a href=\"$get_ga_code_url"."\">Get Google Analytics Token</a>");
-    print("</br><a href=\"ga-get-profiles.php"."\">Choose Google Analytics Profile</a>");
+    print("</br><a href=\"ga-get-profiles.php"."\">Manage Google Analytics Profiles</a>");
     print("</br><a href=\"ga-get-data.php"."\">Choose Google Analytics Data</a>");
     echo "<br><br>";
 
