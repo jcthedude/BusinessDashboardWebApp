@@ -18,7 +18,7 @@ else:
 
         // iterate through the result set and print each document
         echo $query->count() . ' document(s) found. <br/>';
-        foreach ($query as $obj) {
+        foreach ($query as $obj):
             echo '_id: ' . $obj['_id'] . '<br/>';
             echo 'username: ' . $obj['username'] . '<br/>';
             echo 'password: ' . $obj['password'] . '<br/>';
@@ -28,7 +28,7 @@ else:
             echo 'modified: ' . $obj['modified'] . '<br/>';
             echo 'token: ' . $obj['token'] . '<br/>';
             echo '<br/>';
-        }
+        endforeach;
     } catch (MongoConnectionException $e) {
         die('Error connecting to MongoDB server');
     } catch (MongoException $e) {

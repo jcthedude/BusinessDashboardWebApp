@@ -1,14 +1,5 @@
 <?php
 
-function getRefreshToken($username, $refresh_token)
-{
-    global $coll;
-    $coll->update(array('username' => $username),
-        array('$set' => array('account' => array('ga_refresh_token' => $refresh_token)
-        )));
-    return true;
-}
-
 function newUser($username, $password, $email, $token)
 {
     $type = "member";
