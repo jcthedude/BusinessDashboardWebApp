@@ -12,6 +12,7 @@ else:
     print("</br><a href=\"email-change.php"."\">Change Email Address</a>");
     print("</br><a href=\"$get_ga_code_url"."\">Get Google Analytics Token</a>");
     print("</br><a href=\"ga-get-profiles.php"."\">Choose Google Analytics Profile</a>");
+    print("</br><a href=\"ga-get-data.php"."\">Choose Google Analytics Data</a>");
     echo "<br><br>";
 
     try {
@@ -28,6 +29,9 @@ else:
             echo 'created: ' . $obj['created'] . '<br/>';
             echo 'modified: ' . $obj['modified'] . '<br/>';
             echo 'token: ' . $obj['token'] . '<br/>';
+            foreach ($obj['ga_web_property'] as $obj_property):
+                echo 'property: ' . $obj_property['ga_property_name'] . '<br/>';
+            endforeach;
             echo '<br/>';
         endforeach;
     } catch (MongoConnectionException $e) {
