@@ -12,7 +12,8 @@ else:
     print("</br><a href=\"email-change.php"."\">Change Email Address</a>");
     print("</br><a href=\"$get_ga_code_url"."\">Get Google Analytics Token</a>");
     print("</br><a href=\"ga-get-profiles.php"."\">Manage Google Analytics Profiles</a>");
-    print("</br><a href=\"ga-get-data.php"."\">Choose Google Analytics Data</a>");
+    print("</br><a href=\"ga-get-data-month.php"."\">Get Google Analytics Monthly Data</a>");
+    print("</br><a href=\"ga-get-data-year.php"."\">Get Google Analytics Yearly Data</a>");
     echo "<br><br>";
 
     try {
