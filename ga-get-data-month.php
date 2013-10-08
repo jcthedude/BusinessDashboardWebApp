@@ -18,7 +18,7 @@ else:
         //Get access token using refresh token
         $ch = curl_init();
         $timeout = 5;
-        curl_setopt($ch, CURLOPT_URL, 'https://accounts.google.com/o/oauth2/token');
+        curl_setopt($ch, CURLOPT_URL, 'http://accounts.google.com/o/oauth2/token');
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, 'refresh_token='.$refresh_token.'&client_id='.$client_id.'&client_secret='.$client_secret.'&grant_type=refresh_token');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
@@ -27,7 +27,6 @@ else:
         curl_close($ch);
         $result = json_decode($data, true);
         $access_token = $result['access_token'];
-        var_dump($data);
 
         //Get visitors for last 30 days
         if(isset($access_token)):
