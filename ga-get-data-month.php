@@ -29,7 +29,6 @@ else:
         $access_token = $result['access_token'];
 
         //Get visitors for last 30 days
-        //TODO: Add variables for metrics and dimensions for easier query changes
         if(isset($access_token)):
             foreach ($query['ga_web_property'] as $obj_property):
                 $selected_profile = $obj_property['ga_property_id'];
