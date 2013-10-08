@@ -27,6 +27,7 @@ else:
         curl_close($ch);
         $result = json_decode($data, true);
         $access_token = $result['access_token'];
+        var_dump($result);
 
         //Get visitors for last 30 days
         if(isset($access_token)):
