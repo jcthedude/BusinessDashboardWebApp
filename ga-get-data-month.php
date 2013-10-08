@@ -18,7 +18,7 @@ else:
         //Get access token using refresh token
         $ch = curl_init();
         $timeout = 5;
-        curl_setopt($ch, CURLOPT_URL, 'http://accounts.google.com/o/oauth2/token');
+        curl_setopt($ch, CURLOPT_URL, 'https://accounts.google.com/o/oauth2/token');
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, 'refresh_token='.$refresh_token.'&client_id='.$client_id.'&client_secret='.$client_secret.'&grant_type=refresh_token');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
@@ -37,7 +37,7 @@ else:
                 $total_visitors = 0;
                 $total_new_visits = 0;
 
-                $url = 'http://www.googleapis.com/analytics/v3/data/ga?ids=ga:'.$selected_profile.'&start-date='.$startDate.'&end-date='.$endDate.'&metrics=ga:visitors,ga:newVisits&dimensions=ga:date&max-results='.$max_results;
+                $url = 'https://www.googleapis.com/analytics/v3/data/ga?ids=ga:'.$selected_profile.'&start-date='.$startDate.'&end-date='.$endDate.'&metrics=ga:visitors,ga:newVisits&dimensions=ga:date&max-results='.$max_results;
                 $ch = curl_init();
                 $timeout = 5;
                 curl_setopt($ch, CURLOPT_URL, $url);
