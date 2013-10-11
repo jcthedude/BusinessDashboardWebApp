@@ -21,6 +21,12 @@ $get_ga_code_url            = "https://accounts.google.com/o/oauth2/auth?respons
 //$selected_profile           = '69242945';
 $max_results                = '100';
 
+//Yelp API variables
+$yelp_consumer_key          = 'IFYYmtux295mKmUuScIHbA';
+$yelp_consumer_secret       = 'Q1hXFNjRosU54Ovu7JsWtmj_znI';
+$yelp_token                 = 'vcILLzXQC39poety7Hqnp4uwLezh-mP5';
+$yelp_token_secret          = 'Gy655YMyu-Hc7MEbmkBYT9EP61c';
+
 //Database connection variables
 //$db_host                    = "us-cdbr-azure-west-b.cleardb.com";
 //$db_name                    = "jjcdashA6w6NQ9VA";

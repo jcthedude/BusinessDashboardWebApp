@@ -1,6 +1,6 @@
 <?php
 
-include('modules/config.php');
+include_once('modules/config.php');
 
 if(!loggedIn()):
     header('Location: login.php');
