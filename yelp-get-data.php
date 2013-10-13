@@ -11,23 +11,7 @@ else:
 
     if(isset($query['yelp_business'])):
         foreach ($query['yelp_business'] as $obj_business):
-            $unsigned_url = "http://api.yelp.com/v2/business/".$obj_business['yelp_id'];
-
-            // Get signed url
-            $token = new OAuthToken($yelp_token, $yelp_token_secret);
-            $consumer = new OAuthConsumer($yelp_consumer_key, $yelp_consumer_secret);
-            $signature_method = new OAuthSignatureMethod_HMAC_SHA1();
-            $oauthrequest = OAuthRequest::from_consumer_and_token($consumer, $token, 'GET', $unsigned_url);
-            $oauthrequest->sign_request($signature_method, $consumer, $token);
-            $signed_url = $oauthrequest->to_url();
-
-            // Send Yelp API Call
-            $ch = curl_init($signed_url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            $data = curl_exec($ch);
-            curl_close($ch);
-            $result_yelp = json_decode($data, true);
+            $result_yelp = makeYelpAPIRequestBusiness($obj_business['yelp_id']);
 
             echo "Business: " . $result_yelp['name'] . '<br/>';
             echo "Yelp URL: " . $result_yelp['url'] . '<br/>';

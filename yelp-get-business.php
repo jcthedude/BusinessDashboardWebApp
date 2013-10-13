@@ -29,23 +29,7 @@ else:
         $location = str_replace(" ", "+", $_POST["location"]);
         $business = str_replace(" ", "+", $_POST["business"]);
 
-        $unsigned_url = "http://api.yelp.com/v2/search?term=".$business."&location=".$location;
-
-        // Get signed url
-        $token = new OAuthToken($yelp_token, $yelp_token_secret);
-        $consumer = new OAuthConsumer($yelp_consumer_key, $yelp_consumer_secret);
-        $signature_method = new OAuthSignatureMethod_HMAC_SHA1();
-        $oauthrequest = OAuthRequest::from_consumer_and_token($consumer, $token, 'GET', $unsigned_url);
-        $oauthrequest->sign_request($signature_method, $consumer, $token);
-        $signed_url = $oauthrequest->to_url();
-
-        // Send Yelp API Call
-        $ch = curl_init($signed_url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        $data = curl_exec($ch);
-        curl_close($ch);
-        $result_yelp = json_decode($data, true);
+        $result_yelp = makeYelpAPIRequestSearch($location, $business);
 
         foreach ($result_yelp['businesses'] as $obj_add):
             $dropdown_add .= "<option value='" . $obj_add['id'] . "*" . $obj_add['name'] . "'>" . $obj_add['name'] . "</option>";
