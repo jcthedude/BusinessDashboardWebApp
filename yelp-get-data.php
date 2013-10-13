@@ -30,11 +30,13 @@ else:
             $result_yelp = json_decode($data, true);
 
             echo "Business: " . $result_yelp['name'] . '<br/>';
+            echo "Yelp URL: " . $result_yelp['url'] . '<br/>';
+            echo "Claimed: " . $result_yelp['is_claimed'] . '<br/>';
             echo "Rating: " . $result_yelp['rating'] . '<br/>';
             echo "Review Count: " . $result_yelp['review_count'] . '<br/>';
-            echo "Reviews: " . '<br/>';
+            echo "Most Recent Reviews: " . '<br/>';
             foreach ($result_yelp['reviews'] as $item):
-                echo $item['rating'] . '---' . $item['excerpt'] . '<br/>';
+                echo date($date_format, $item['time_created']) . '---' . $item['user']['name'] . '---' . $item['rating'] . '---' . $item['excerpt'] . '<br/>';
             endforeach;
         endforeach;
     endif;

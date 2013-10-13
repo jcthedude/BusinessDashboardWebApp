@@ -7,6 +7,9 @@ include_once("func.yelp.php");
 
 session_start();
 
+//General variables
+$date_format                = "n/j/y";
+
 //Email variables
 $sendgrid_url               = 'http://sendgrid.com/api/mail.send.json';
 $sendgrid_user              = 'azure_fc45a5108bda2f0b000eb55eab20b9ad@azure.com';
