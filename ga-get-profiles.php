@@ -8,7 +8,6 @@ if(!loggedIn()):
 else:
     $query = $coll->findOne(array('username' => $_SESSION["username"]));
     $refresh_token = $query['ga_refresh_token'];
-    $result_properties = [];
 
     if (!isset($query['ga_refresh_token'])):
         echo "No Google Analytics refresh token was found.";
@@ -42,7 +41,7 @@ else:
             $result_properties = json_decode($data, true);
 
             foreach ($result_properties['items'] as $obj_add):
-                $dropdown_add .= "<option value='" . $obj_add['id'] . "'>" . $obj_add['name'] . "</option>";
+                $dropdown_add .= "<option value='" . $obj_add['id'] . "*" . $obj_add['name'] . "'>" . $obj_add['name'] . "</option>";
             endforeach;
 
             foreach ($query['ga_web_property'] as $obj_delete):
@@ -52,14 +51,9 @@ else:
     endif;
 
     if(isset($_POST['property_add'])):
-        $ga_property_id = $_POST['property_add'];
-        $ga_property_name = "";
-
-        foreach ($result_properties['items'] as $item):
-            if ($item['id'] === $ga_property_id):
-                $ga_property_name = $item['name'];
-            endif;
-        endforeach;
+        $try = explode('*',$_POST['property_add']);
+        $ga_property_id = $try[0];
+        $ga_property_name = $try[1];
 
         getWebProperty($query['username'], $ga_property_id, $ga_property_name);
         echo '<script>parent.window.location.reload(true);</script>';

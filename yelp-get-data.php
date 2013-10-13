@@ -3,41 +3,41 @@
 include_once('modules/config.php');
 include_once('modules/class.oauth.php');
 
-// For example, request business with id 'the-waterboy-sacramento'
-$unsigned_url = "http://api.yelp.com/v2/business/the-waterboy-sacramento";
+if(!loggedIn()):
+    header('Location: login.php');
+    exit();
+else:
+    $query = $coll->findOne(array('username' => $_SESSION["username"]));
 
-// For examaple, search for 'tacos' in 'sf'
-//$unsigned_url = "http://api.yelp.com/v2/search?term=tacos&location=sf";
+    if(isset($query['yelp_business'])):
+        foreach ($query['yelp_business'] as $obj_business):
+            $unsigned_url = "http://api.yelp.com/v2/business/".$obj_business['yelp_id'];
 
-// Token object built using the OAuth library
-$token = new OAuthToken($yelp_token, $yelp_token_secret);
+            // Get signed url
+            $token = new OAuthToken($yelp_token, $yelp_token_secret);
+            $consumer = new OAuthConsumer($yelp_consumer_key, $yelp_consumer_secret);
+            $signature_method = new OAuthSignatureMethod_HMAC_SHA1();
+            $oauthrequest = OAuthRequest::from_consumer_and_token($consumer, $token, 'GET', $unsigned_url);
+            $oauthrequest->sign_request($signature_method, $consumer, $token);
+            $signed_url = $oauthrequest->to_url();
 
-// Consumer object built using the OAuth library
-$consumer = new OAuthConsumer($yelp_consumer_key, $yelp_consumer_secret);
+            // Send Yelp API Call
+            $ch = curl_init($signed_url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            $data = curl_exec($ch);
+            curl_close($ch);
+            $result_yelp = json_decode($data, true);
 
-// Yelp uses HMAC SHA1 encoding
-$signature_method = new OAuthSignatureMethod_HMAC_SHA1();
-
-// Build OAuth Request using the OAuth PHP library. Uses the consumer and token object created above.
-$oauthrequest = OAuthRequest::from_consumer_and_token($consumer, $token, 'GET', $unsigned_url);
-
-// Sign the request
-$oauthrequest->sign_request($signature_method, $consumer, $token);
-
-// Get the signed URL
-$signed_url = $oauthrequest->to_url();
-
-// Send Yelp API Call
-$ch = curl_init($signed_url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HEADER, 0);
-$data = curl_exec($ch); // Yelp response
-curl_close($ch);
-
-// Handle Yelp response data
-$response = json_decode($data);
-
-// Print it for debugging
-print_r($response);
+            echo "Business: " . $result_yelp['name'] . '<br/>';
+            echo "Rating: " . $result_yelp['rating'] . '<br/>';
+            echo "Review Count: " . $result_yelp['review_count'] . '<br/>';
+            echo "Reviews: " . '<br/>';
+            foreach ($result_yelp['reviews'] as $item):
+                echo $item['rating'] . '---' . $item['excerpt'] . '<br/>';
+            endforeach;
+        endforeach;
+    endif;
+endif;
 
 ?>

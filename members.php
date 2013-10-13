@@ -14,6 +14,7 @@ else:
     print("</br><a href=\"ga-get-profiles.php"."\">Manage Google Analytics Profiles</a>");
     print("</br><a href=\"ga-get-data-month.php"."\">Get Google Analytics Monthly Data</a>");
     print("</br><a href=\"ga-get-data-year.php"."\">Get Google Analytics Yearly Data</a>");
+    print("</br><a href=\"yelp-get-business.php"."\">Manage Yelp Business</a>");
     print("</br><a href=\"yelp-get-data.php"."\">Get Yelp Data</a>");
     echo "<br><br>";
 
