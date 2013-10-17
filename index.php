@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 
     <title>Business Dashboard App 1111</title>
 </head>
@@ -62,6 +62,6 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="//code.jquery.com/jquery.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

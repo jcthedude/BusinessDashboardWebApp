@@ -25,7 +25,7 @@ class TwitterOAuth {
     public $connecttimeout = 30;
     /* Verify SSL Cert. */
     public $ssl_verifypeer = FALSE;
-    /* Respons format. */
+    /* Response format. */
     public $format = 'json';
     /* Decode returned json data. */
     public $decode_json = TRUE;
