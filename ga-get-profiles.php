@@ -14,31 +14,11 @@ else:
         header('Location: members.php');
         exit();
     else:
-        //Get access token using refresh token
-        $ch = curl_init();
-        $timeout = 5;
-        curl_setopt($ch, CURLOPT_URL, 'https://accounts.google.com/o/oauth2/token');
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, 'refresh_token='.$refresh_token.'&client_id='.$client_id.'&client_secret='.$client_secret.'&grant_type=refresh_token');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-        $data = curl_exec($ch);
-        curl_close($ch);
-        $result = json_decode($data, true);
-        $access_token = $result['access_token'];
+        $access_token = getAccessToken($refresh_token);
 
         //Get web properties for account
         if(isset($access_token)):
-            $url = 'https://www.googleapis.com/analytics/v3/management/accounts/~all/webproperties/~all/profiles?key='.$api_key;
-            $ch = curl_init();
-            $timeout = 5;
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $access_token));
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-            $data = curl_exec($ch);
-            curl_close($ch);
-            $result_properties = json_decode($data, true);
+            $result_properties = getWebProperties($access_token);
 
             foreach ($result_properties['items'] as $obj_add):
                 $dropdown_add .= "<option value='" . $obj_add['id'] . "*" . $obj_add['name'] . "'>" . $obj_add['name'] . "</option>";
