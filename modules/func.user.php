@@ -47,6 +47,8 @@ function flushMemberSession()
 {
     unset($_SESSION["loggedIn"]);
     unset($_SESSION["username"]);
+    unset($_SESSION["oauth_token"]);
+    unset($_SESSION["oauth_token_secret"]);
     session_destroy();
 
     setcookie("user", "", time()-3600);

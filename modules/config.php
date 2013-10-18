@@ -4,6 +4,7 @@ include_once("func.user.php");
 include_once("func.mail.php");
 include_once("func.ga.php");
 include_once("func.yelp.php");
+include_once("func.twitter.php");
 
 session_start();
 
@@ -30,19 +31,12 @@ $yelp_consumer_secret       = 'Q1hXFNjRosU54Ovu7JsWtmj_znI';
 $yelp_token                 = 'vcILLzXQC39poety7Hqnp4uwLezh-mP5';
 $yelp_token_secret          = 'Gy655YMyu-Hc7MEbmkBYT9EP61c';
 
-//Database connection variables
-//$db_host                    = "us-cdbr-azure-west-b.cleardb.com";
-//$db_name                    = "jjcdashA6w6NQ9VA";
-//$db_user                    = "bc5d4a46d2d096";
-//$db_password                = "e773c370";
-//$sql_conn                   = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
-
-//Database connection variables
-//$db_server                    = "wy8jcz86k9.database.windows.net";
-//$db_name                    = "jjcdashboardapp_db";
-//$db_user                    = "slampana";
-//$db_password                = "Campana1";
-//$sql_conn                   = new PDO("sqlsrv:server=$db_server;database=$db_name", $db_user, $db_password);
+//Twitter API variables
+$twitter_consumer_key          = '40TEYkDzTwH9trC3c8IA';
+$twitter_consumer_secret       = 'mW1u76Bz1c5PoMLW08CEKelQa4ejRqzNMbwbh2r9uLk';
+$twitter_token                 = '758440064-wJFjXM3AGxCRWfKguxMLYNo6DMuaDESDl1RQEfI';
+$twitter_token_secret          = 'lp0p7H2mcqHDMoVtPTgHBQIvYZXmHUTb4SJkA2TIuf8';
+$twitter_callback              = 'http://localhost/business_dashboard_app/twitter-auth-callback.php';
 
 try
 {
