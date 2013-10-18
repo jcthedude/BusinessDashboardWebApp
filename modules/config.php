@@ -34,8 +34,6 @@ $yelp_token_secret          = 'Gy655YMyu-Hc7MEbmkBYT9EP61c';
 //Twitter API variables
 $twitter_consumer_key          = '40TEYkDzTwH9trC3c8IA';
 $twitter_consumer_secret       = 'mW1u76Bz1c5PoMLW08CEKelQa4ejRqzNMbwbh2r9uLk';
-$twitter_token                 = '758440064-wJFjXM3AGxCRWfKguxMLYNo6DMuaDESDl1RQEfI';
-$twitter_token_secret          = 'lp0p7H2mcqHDMoVtPTgHBQIvYZXmHUTb4SJkA2TIuf8';
 $twitter_callback              = 'http://localhost/business_dashboard_app/twitter-auth-callback.php';
 
 try
