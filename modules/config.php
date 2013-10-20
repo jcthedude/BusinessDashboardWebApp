@@ -8,6 +8,9 @@ include_once("func.twitter.php");
 
 session_start();
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 //General variables
 $date_format                = "n/j/y";
 
@@ -34,7 +37,7 @@ $yelp_token_secret          = 'Gy655YMyu-Hc7MEbmkBYT9EP61c';
 //Twitter API variables
 $twitter_consumer_key          = '40TEYkDzTwH9trC3c8IA';
 $twitter_consumer_secret       = 'mW1u76Bz1c5PoMLW08CEKelQa4ejRqzNMbwbh2r9uLk';
-$twitter_callback              = 'http://localhost/business_dashboard_app/twitter-auth-callback.php';
+$twitter_callback              = 'http://localhost:8888/business_dashboard_app/twitter-auth-callback.php';
 
 try
 {

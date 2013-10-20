@@ -14,7 +14,6 @@ else:
     endforeach;
 
     if(isset($_POST["search"])):
-
         // First check that required fields have been filled in.
         if (empty($_POST['location'])):
             $errors['location'] = "Location cannot be empty.";
@@ -25,7 +24,6 @@ else:
     endif;
 
     if (isset($_POST["search"]) && empty($errors)):
-
         $location = str_replace(" ", "+", $_POST["location"]);
         $business = str_replace(" ", "+", $_POST["business"]);
 

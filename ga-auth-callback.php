@@ -26,7 +26,7 @@ else:
 
         getRefreshToken($query['username'], $refresh_token);
 
-        header('Location: ga-get-profiles.php');
+        header('Location: ga-get-profile.php');
         exit();
     else:
         echo "No Google Analytics code was returned.";

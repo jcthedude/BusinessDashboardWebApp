@@ -10,12 +10,12 @@ else:
     print("</br><a href=\"logout.php"."\">Logout</a>");
     print("</br><a href=\"password-change.php"."\">Change Password</a>");
     print("</br><a href=\"email-change.php"."\">Change Email Address</a>");
-    print("</br><a href=\"$get_ga_code_url"."\">Get Google Analytics Token</a>");
-    print("</br><a href=\"ga-get-profiles.php"."\">Manage Google Analytics Profiles</a>");
+    print("</br><a href=\"ga-get-profile.php"."\">Manage Google Analytics Profile</a>");
     print("</br><a href=\"ga-get-data-month.php"."\">Get Google Analytics Monthly Data</a>");
     print("</br><a href=\"ga-get-data-year.php"."\">Get Google Analytics Yearly Data</a>");
     print("</br><a href=\"yelp-get-business.php"."\">Manage Yelp Business</a>");
     print("</br><a href=\"yelp-get-data.php"."\">Get Yelp Data</a>");
+    print("</br><a href=\"twitter-get-user.php"."\">Manage Twitter User</a>");
     print("</br><a href=\"twitter-get-data.php"."\">Get Twitter Data</a>");
     echo "<br><br>";
 
