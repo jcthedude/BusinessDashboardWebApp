@@ -27,10 +27,10 @@ else:
         $business = str_replace(" ", "+", $_POST["business"]);
 
         $result_geocode = makeGeolocationAPIRequest($location);
-        $result_places = makePlacesAPIRequestBusiness($result_geocode, $business);
+        $result_places = makePlacesAPIRequestSearch($result_geocode, $business);
 
         foreach ($result_places['results'] as $obj_add):
-            $dropdown_add .= "<option value='" . $obj_add['id'] . "*" . $obj_add['name'] . "'>" . $obj_add['name'] . "--" . $obj_add['vicinity'] ."</option>";
+            $dropdown_add .= "<option value='" . $obj_add['reference'] . "*" . $obj_add['name'] . "'>" . $obj_add['name'] . "--" . $obj_add['vicinity'] ."</option>";
         endforeach;
     endif;
 

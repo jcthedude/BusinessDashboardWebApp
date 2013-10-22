@@ -50,7 +50,28 @@ function makeGeolocationAPIRequest($location)
     endif;
 }
 
-function makePlacesAPIRequestBusiness($location, $business)
+function makePlacesAPIRequestBusiness($places_id)
+{
+    if (empty($places_id)):
+        echo "No Places business was given.";
+    else:
+        global $api_key;
+
+        //Get business details
+        $url = 'https://maps.googleapis.com/maps/api/place/details/json?reference='.$places_id.'&sensor=false&key='.$api_key;
+        $ch = curl_init();
+        $timeout = 5;
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $data = curl_exec($ch);
+        curl_close($ch);
+        return json_decode($data, true);
+    endif;
+}
+
+function makePlacesAPIRequestSearch($location, $business)
 {
     if (empty($location)):
         echo "No Places location was given.";

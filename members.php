@@ -16,6 +16,7 @@ else:
     print("</br><a href=\"yelp-get-business.php"."\">Manage Yelp Business</a>");
     print("</br><a href=\"yelp-get-data.php"."\">Get Yelp Data</a>");
     print("</br><a href=\"places-get-business.php"."\">Manage Google Places Business</a>");
+    print("</br><a href=\"places-get-data.php"."\">Get Google Places Data</a>");
     print("</br><a href=\"twitter-get-user.php"."\">Manage Twitter User</a>");
     print("</br><a href=\"twitter-get-data.php"."\">Get Twitter Data</a>");
     echo "<br><br>";

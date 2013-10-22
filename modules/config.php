@@ -41,6 +41,9 @@ $twitter_consumer_key          = '40TEYkDzTwH9trC3c8IA';
 $twitter_consumer_secret       = 'mW1u76Bz1c5PoMLW08CEKelQa4ejRqzNMbwbh2r9uLk';
 $twitter_callback              = 'http://localhost:8888/business_dashboard_app/twitter-auth-callback.php';
 
+//CitySearch API variables
+$cs_publisher               = '10000005389';
+
 try
 {
     $conn                   = new Mongo('mongodb://slampana:Campana1@ds041167.mongolab.com:41167/jjcdashboardapp_mongo_db');
