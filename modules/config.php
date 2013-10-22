@@ -3,6 +3,7 @@
 include_once("func.user.php");
 include_once("func.mail.php");
 include_once("func.ga.php");
+include_once("func.places.php");
 include_once("func.yelp.php");
 include_once("func.twitter.php");
 
@@ -20,13 +21,14 @@ $sendgrid_user              = 'azure_fc45a5108bda2f0b000eb55eab20b9ad@azure.com'
 $sendgrid_password          = 'qokkhzi1';
 $sendgrid_from              = 'justin.campana@gmail.com';
 
-//Google Analytics API variables
+//Google Analytics and Places API variables
 $client_id                  = '925815342836.apps.googleusercontent.com';
 $client_secret              = '7KqGnzQxESIQb8mB03Ksz2Ef';
 $redirect_uri               = 'http://localhost:8888/business_dashboard_app/ga-auth-callback.php';
 $api_key                    = 'AIzaSyCKp12gtsmUTAGPIQL0um_zlLgT03CJHg4';
 $get_ga_code_url            = "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=".$client_id."&redirect_uri=".$redirect_uri."&access_type=offline&scope=https://www.googleapis.com/auth/analytics.readonly";
 $max_results                = '100';
+$radius                     = '30000';
 
 //Yelp API variables
 $yelp_consumer_key          = 'IFYYmtux295mKmUuScIHbA';

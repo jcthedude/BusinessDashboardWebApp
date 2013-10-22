@@ -16,7 +16,7 @@ function getYelpBusiness($username, $yelp_id, $yelp_name)
 function deleteYelpBusiness($username, $yelp_id)
 {
     if (empty($yelp_id)):
-        echo "No yelp business was given for deletion.";
+        echo "No Yelp business was given for deletion.";
     else:
         global $coll;
         $coll->update(array('username' => $username),
@@ -29,7 +29,7 @@ function deleteYelpBusiness($username, $yelp_id)
 function makeYelpAPIRequestBusiness($yelp_id)
 {
     if (empty($yelp_id)):
-        echo "No yelp business ID was given.";
+        echo "No Yelp business ID was given.";
     else:
         global $yelp_token;
         global $yelp_token_secret;
@@ -79,5 +79,5 @@ function makeYelpAPIRequestSearch($location, $business)
     curl_setopt($ch, CURLOPT_HEADER, 0);
     $data = curl_exec($ch);
     curl_close($ch);
-        return json_decode($data, true);
+    return json_decode($data, true);
 }
