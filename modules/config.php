@@ -6,6 +6,7 @@ include_once("func.ga.php");
 include_once("func.places.php");
 include_once("func.yelp.php");
 include_once("func.twitter.php");
+include_once("func.citysearch.php");
 
 session_start();
 
@@ -42,7 +43,7 @@ $twitter_consumer_secret       = 'mW1u76Bz1c5PoMLW08CEKelQa4ejRqzNMbwbh2r9uLk';
 $twitter_callback              = 'http://localhost:8888/business_dashboard_app/twitter-auth-callback.php';
 
 //CitySearch API variables
-$cs_publisher               = '10000005389';
+$citysearch_publisher               = '10000005389';
 
 try
 {

@@ -8,8 +8,8 @@ if(!loggedIn()):
 else:
     $query = $coll->findOne(array('username' => $_SESSION["username"]));
 
-    foreach ($query['places_business'] as $obj_delete):
-        $dropdown_delete .= "<option value='" . $obj_delete['places_id'] . "'>" . $obj_delete['places_name'] . "</option>";
+    foreach ($query['citysearch_business'] as $obj_delete):
+        $dropdown_delete .= "<option value='" . $obj_delete['citysearch_id'] . "'>" . $obj_delete['citysearch_name'] . "</option>";
     endforeach;
 
     if(isset($_POST["search"])):
@@ -26,29 +26,28 @@ else:
         $location = str_replace(" ", "+", $_POST["location"]);
         $business = str_replace(" ", "+", $_POST["business"]);
 
-        $result_geocode = makeGeolocationAPIRequest($location);
-        $result_places = makePlacesAPIRequestSearch($result_geocode, $business);
+        $result_citysearch = makeCitysearchAPIRequestSearch($location, $business);
 
-        foreach ($result_places['results'] as $obj_add):
-            $dropdown_add .= "<option value='" . $obj_add['reference'] . "*" . $obj_add['name'] . "'>" . $obj_add['name'] . "--" . $obj_add['vicinity'] ."</option>";
+        foreach ($result_citysearch['results']['locations'] as $obj_add):
+            $dropdown_add .= "<option value='" . $obj_add['id'] . "*" . $obj_add['name'] . "'>" . $obj_add['name'] . "--" . $obj_add['address']['street'] . " " . $obj_add['address']['city'] . ", ". $obj_add['address']['state'] . "</option>";
         endforeach;
     endif;
 
     if(isset($_POST['submit_add'])):
         $try = explode('*',$_POST['business_add']);
-        $places_id = $try[0];
-        $places_name = $try[1];
-        $try2 = explode('--',$places_name);
-        $places_name = $try2[0];
+        $citysearch_id = $try[0];
+        $citysearch_name = $try[1];
+        $try2 = explode('--',$citysearch_name);
+        $citysearch_name = $try2[0];
 
-        getPlacesBusiness($query['username'], $places_id, $places_name);
+        getCitysearchBusiness($query['username'], $citysearch_id, $citysearch_name);
         echo '<script>parent.window.location.reload(true);</script>';
     endif;
 
     if(isset($_POST['submit_delete'])):
-        $places_id = $_POST['business_delete'];
+        $citysearch_id = $_POST['business_delete'];
 
-        deletePlacesBusiness($query['username'], $places_id);
+        deleteCitysearchBusiness($query['username'], $citysearch_id);
         echo '<script>parent.window.location.reload(true);</script>';
     endif;
 endif;
@@ -57,7 +56,7 @@ endif;
 
 <html>
 <head>
-    <title>Search Google Places for a Business</title>
+    <title>Search Citysearch for a Business</title>
 </head>
 <body>
 <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST">

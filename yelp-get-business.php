@@ -76,7 +76,7 @@ endif;
                 Business:
             </td>
             <td>
-                <input type="text" name="business" value="<?php print isset($_POST["business"]) ? $_POST["business"] : "" ; ?>" maxlength="100">
+                <input type="text" name="business" value="<?php print isset($_POST["business"]) ? $_POST["business"] : "" ; ?>" maxlength="50">
                     <span class="error">
                         <?php echo isset($errors['business']) ? $errors['business'] : ''; ?>
                     </span><br />
