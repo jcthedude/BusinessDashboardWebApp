@@ -3,6 +3,7 @@
 include_once("func.user.php");
 include_once("func.mail.php");
 include_once("func.ga.php");
+include_once("func.facebook.php");
 include_once("func.places.php");
 include_once("func.yelp.php");
 include_once("func.twitter.php");

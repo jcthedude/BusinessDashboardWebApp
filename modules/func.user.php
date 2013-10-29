@@ -39,16 +39,21 @@ function cleanMemberSession($username, $remember_me)
             setcookie("user", $query['_id'], time()+60*60*24*30);
             setcookie("token", $query['token'], time()+60*60*24*30);
         endif;
-        return true;
+    return true;
     endif;
 }
 
 function flushMemberSession()
 {
+    global $facebook_app_id;
+
     unset($_SESSION["loggedIn"]);
     unset($_SESSION["username"]);
     unset($_SESSION["oauth_token"]);
     unset($_SESSION["oauth_token_secret"]);
+    unset($_SESSION["fb_".$facebook_app_id."_code"]);
+    unset($_SESSION["fb_".$facebook_app_id."_access_token"]);
+    unset($_SESSION["fb_".$facebook_app_id."_user_id"]);
     session_destroy();
 
     setcookie("user", "", time()-3600);

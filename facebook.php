@@ -3,91 +3,85 @@
 include_once("modules/config.php");
 include_once("modules/class.facebook.php");
 
-// Create our Application instance (replace this with your appId and secret).
-$facebook = new Facebook(array(
-  'appId'  => $facebook_app_id,
-  'secret' => $facebook_app_secret,
-));
+if(!loggedIn()):
+    header('Location: login.php');
+    exit();
+else:
+    $query = $coll->findOne(array('username' => $_SESSION["username"]));
 
-// Get User ID
-$user = $facebook->getUser();
+    if(isset($query['facebook_id'])):
+        $facebook = new Facebook(array(
+            'appId'  => $facebook_app_id,
+            'secret' => $facebook_app_secret,
+        ));
 
-// We may or may not have this data based on whether the user is logged in.
-//
-// If we have a $user id here, it means we know the user is logged into
-// Facebook, but we don't know if the access token is valid. An access
-// token is invalid if the user logged out of Facebook.
+        $_SESSION["fb_".$facebook_app_id."_user_id"] = $query['facebook_id'];
+        $_SESSION["fb_".$facebook_app_id."_access_token"] = $query['facebook_access_token'];
 
-if ($user) {
-  try {
-    // Proceed knowing you have a logged in user who's authenticated.
-    $user_profile = $facebook->api('/me');
-  } catch (FacebookApiException $e) {
-    error_log($e);
-    $user = null;
-  }
-}
+        $user = $facebook->getUser();
 
-// Login or logout url will be needed depending on current user state.
-if ($user) {
-  $logoutUrl = $facebook->getLogoutUrl();
-} else {
-  $statusUrl = $facebook->getLoginStatusUrl();
-  $loginUrl = $facebook->getLoginUrl();
-}
+        $facebook->setExtendedAccessToken();
+        $access_token = $_SESSION["fb_".$facebook_app_id."_access_token"];
+        $facebook->setAccessToken($access_token);
+        $facebook_access_token = $facebook->getAccessToken();
 
-// This call will always work since we are fetching public data.
-$naitik = $facebook->api('/naitik');
+        getFacebookAccessToken($query['username'], $user_profile['id'], $facebook_access_token);
 
+        if($user):
+            $user_profile = $facebook->api('/me');
+
+            $facebook_id = $query['facebook_id'];
+        else:
+            $loginUrl = $facebook->getLoginUrl();
+        endif;
+    else:
+        $facebook = new Facebook(array(
+            'appId'  => $facebook_app_id,
+            'secret' => $facebook_app_secret,
+        ));
+
+        $user = $facebook->getUser();
+
+        if($user):
+            $user_profile = $facebook->api('/me');
+
+            $facebook_id = $user_profile['id'];
+
+            $facebook->setExtendedAccessToken();
+            $access_token = $_SESSION["fb_".$facebook_app_id."_access_token"];
+            $facebook->setAccessToken($access_token);
+            $facebook_access_token = $facebook->getAccessToken();
+
+            getFacebookAccessToken($query['username'], $user_profile['id'], $facebook_access_token);
+        else:
+            $loginUrl = $facebook->getLoginUrl();
+        endif;
+    endif;
+endif;
 ?>
-<!doctype html>
-<html xmlns:fb="http://www.facebook.com/2008/fbml">
-  <head>
-    <title>php-sdk</title>
-    <style>
-      body {
-        font-family: 'Lucida Grande', Verdana, Arial, sans-serif;
-      }
-      h1 a {
-        text-decoration: none;
-        color: #3b5998;
-      }
-      h1 a:hover {
-        text-decoration: underline;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>php-sdk</h1>
 
-    <?php if ($user): ?>
-      <a href="<?php echo $logoutUrl; ?>">Logout</a>
-    <?php else: ?>
-      <div>
-        Check the login status using OAuth 2.0 handled by the PHP SDK:
-        <a href="<?php echo $statusUrl; ?>">Check the login status</a>
-      </div>
-      <div>
-        Login using OAuth 2.0 handled by the PHP SDK:
-        <a href="<?php echo $loginUrl; ?>">Login with Facebook</a>
-      </div>
-    <?php endif ?>
-
+<html>
+<head>
+    <title>Facebook Callback</title>
+</head>
+<body>
+<?php if ($user): ?>
     <h3>PHP Session</h3>
     <pre><?php print_r($_SESSION); ?></pre>
 
-    <?php if ($user): ?>
-      <h3>You</h3>
-      <img src="https://graph.facebook.com/<?php echo $user; ?>/picture">
+    <h3>Cookies</h3>
+    <pre><?php print_r($_COOKIE); ?></pre>
 
-      <h3>Your User Object (/me)</h3>
-      <pre><?php print_r($user_profile); ?></pre>
-    <?php else: ?>
-      <strong><em>You are not Connected.</em></strong>
-    <?php endif ?>
+    <h3>Your User Object (/me)</h3>
+    <pre><?php print_r($user_profile); ?></pre>
 
-    <h3>Public profile of Naitik</h3>
-    <img src="https://graph.facebook.com/naitik/picture">
-    <?php echo $naitik['name']; ?>
-  </body>
+    <h3>Your ID</h3>
+    <pre><?php print_r($facebook_id); ?></pre>
+
+    <h3>Your Access Token</h3>
+    <pre><?php print_r($facebook_access_token); ?></pre>
+<?php else: ?>
+    <a href="<?php echo $loginUrl; ?>"><?php echo $loginUrl; ?></a>
+<?php endif ?>
+</body>
 </html>
