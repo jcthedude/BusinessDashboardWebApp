@@ -10,30 +10,32 @@ else:
     $query = $coll->findOne(array('username' => $_SESSION["username"]));
 
     if(isset($query['facebook_id'])):
+        $_SESSION["fb_".$facebook_app_id."_access_token"] = $query['facebook_access_token'];
+
         $facebook = new Facebook(array(
             'appId'  => $facebook_app_id,
             'secret' => $facebook_app_secret,
         ));
 
-        $_SESSION["fb_".$facebook_app_id."_user_id"] = $query['facebook_id'];
-        $_SESSION["fb_".$facebook_app_id."_access_token"] = $query['facebook_access_token'];
+        try {
+            $user = $facebook->getUser();
+            if($user):
+                $user_profile = $facebook->api('/me');
 
-        $user = $facebook->getUser();
+                $facebook->setExtendedAccessToken();
+                $access_token = $_SESSION["fb_".$facebook_app_id."_access_token"];
+                $facebook->setAccessToken($access_token);
+                $facebook_access_token = $facebook->getAccessToken();
 
-        $facebook->setExtendedAccessToken();
-        $access_token = $_SESSION["fb_".$facebook_app_id."_access_token"];
-        $facebook->setAccessToken($access_token);
-        $facebook_access_token = $facebook->getAccessToken();
+                getFacebookAccessToken($query['username'], $user_profile['id'], $facebook_access_token);
 
-        getFacebookAccessToken($query['username'], $user_profile['id'], $facebook_access_token);
-
-        if($user):
-            $user_profile = $facebook->api('/me');
-
-            $facebook_id = $query['facebook_id'];
-        else:
+                $facebook_id = $query['facebook_id'];
+            else:
+                $loginUrl = $facebook->getLoginUrl();
+            endif;
+        } catch (FacebookApiException $e) {
             $loginUrl = $facebook->getLoginUrl();
-        endif;
+        }
     else:
         $facebook = new Facebook(array(
             'appId'  => $facebook_app_id,
@@ -45,19 +47,20 @@ else:
         if($user):
             $user_profile = $facebook->api('/me');
 
-            $facebook_id = $user_profile['id'];
-
             $facebook->setExtendedAccessToken();
             $access_token = $_SESSION["fb_".$facebook_app_id."_access_token"];
             $facebook->setAccessToken($access_token);
             $facebook_access_token = $facebook->getAccessToken();
 
             getFacebookAccessToken($query['username'], $user_profile['id'], $facebook_access_token);
+
+            $facebook_id = $user_profile['id'];
         else:
             $loginUrl = $facebook->getLoginUrl();
         endif;
     endif;
 endif;
+
 ?>
 
 <html>
@@ -66,7 +69,7 @@ endif;
 </head>
 <body>
 <?php if ($user): ?>
-    <h3>PHP Session</h3>
+    <h3>Session</h3>
     <pre><?php print_r($_SESSION); ?></pre>
 
     <h3>Cookies</h3>

@@ -51,9 +51,7 @@ function flushMemberSession()
     unset($_SESSION["username"]);
     unset($_SESSION["oauth_token"]);
     unset($_SESSION["oauth_token_secret"]);
-    unset($_SESSION["fb_".$facebook_app_id."_code"]);
     unset($_SESSION["fb_".$facebook_app_id."_access_token"]);
-    unset($_SESSION["fb_".$facebook_app_id."_user_id"]);
     session_destroy();
 
     setcookie("user", "", time()-3600);
