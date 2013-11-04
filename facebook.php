@@ -20,7 +20,7 @@ else:
         try {
             $user = $facebook->getUser();
             if($user):
-                $user_profile = $facebook->api('/me');
+                $user_profile = $facebook->api('/me/accounts');
 
                 $facebook->setExtendedAccessToken();
                 $access_token = $_SESSION["fb_".$facebook_app_id."_access_token"];
@@ -45,7 +45,7 @@ else:
         $user = $facebook->getUser();
 
         if($user):
-            $user_profile = $facebook->api('/me');
+            $user_profile = $facebook->api('/me/accounts');
 
             $facebook->setExtendedAccessToken();
             $access_token = $_SESSION["fb_".$facebook_app_id."_access_token"];

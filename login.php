@@ -26,6 +26,11 @@ if(isset($_POST["forgot_password"])):
     exit();
 endif;
 
+if(isset($_POST["register"])):
+    header('Location: register.php');
+    exit();
+endif;
+
 ?>
 
 <html>
@@ -76,6 +81,14 @@ endif;
             </td>
             <td>
                 <input name="forgot_password" type="submit" value="Forgot Password">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+            <td>
+                <input name="register" type="submit" value="Register">
             </td>
         </tr>
     </table>
