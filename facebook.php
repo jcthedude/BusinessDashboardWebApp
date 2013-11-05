@@ -1,7 +1,5 @@
 <?php
-
 include_once("modules/config.php");
-include_once("modules/class.facebook.php");
 
 if(!loggedIn()):
     header('Location: login.php');
@@ -9,82 +7,58 @@ if(!loggedIn()):
 else:
     $query = $coll->findOne(array('username' => $_SESSION["username"]));
 
-    if(isset($query['facebook_id'])):
-        $_SESSION["fb_".$facebook_app_id."_access_token"] = $query['facebook_access_token'];
+    if(isset($query['facebook_access_token'])):
+        $access_token = $query['facebook_access_token'];
+    endif;
 
-        $facebook = new Facebook(array(
-            'appId'  => $facebook_app_id,
-            'secret' => $facebook_app_secret,
-        ));
+    $code = $_REQUEST["code"];
 
-        try {
-            $user = $facebook->getUser();
-            if($user):
-                $user_profile = $facebook->api('/me/accounts');
+    // get user access_token
+    if (isset($code)):
+        $token_url = 'https://graph.facebook.com/oauth/access_token?client_id='
+            . $facebook_app_id . '&redirect_uri=' . urlencode($facebook_auth_url)
+            . '&client_secret=' . $facebook_app_secret
+            . '&code=' . $code;
+        $access_token = substr(file_get_contents($token_url), 13);
 
-                $facebook->setExtendedAccessToken();
-                $access_token = $_SESSION["fb_".$facebook_app_id."_access_token"];
-                $facebook->setAccessToken($access_token);
-                $facebook_access_token = $facebook->getAccessToken();
+        // get extended user access_token
+        $extended_token_url = 'https://graph.facebook.com/oauth/access_token?client_id='
+            . $facebook_app_id
+            . '&client_secret=' . $facebook_app_secret
+            . '&grant_type=fb_exchange_token'
+            . '&fb_exchange_token=' . $access_token;
+        $access_token = substr(file_get_contents($extended_token_url), 13);
 
-                getFacebookAccessToken($query['username'], $user_profile['id'], $facebook_access_token);
+        getFacebookAccessToken($query['username'], $access_token);
+    endif;
 
-                $facebook_id = $query['facebook_id'];
-            else:
-                $loginUrl = $facebook->getLoginUrl();
-            endif;
-        } catch (FacebookApiException $e) {
-            $loginUrl = $facebook->getLoginUrl();
-        }
-    else:
-        $facebook = new Facebook(array(
-            'appId'  => $facebook_app_id,
-            'secret' => $facebook_app_secret,
-        ));
+    // run fql query
+    $fql_query_url = 'https://graph.facebook.com/fql?q='
+        . 'SELECT+name+FROM+user+WHERE+uid+IN+(SELECT+uid2+FROM+friend+WHERE+uid1+=+me())'
+        . '&access_token=' . $access_token;
+    $fql_query_result = curl_get_file_contents($fql_query_url);
+    $fql_query_obj = json_decode($fql_query_result);
 
-        $user = $facebook->getUser();
-
-        if($user):
-            $user_profile = $facebook->api('/me/accounts');
-
-            $facebook->setExtendedAccessToken();
-            $access_token = $_SESSION["fb_".$facebook_app_id."_access_token"];
-            $facebook->setAccessToken($access_token);
-            $facebook_access_token = $facebook->getAccessToken();
-
-            getFacebookAccessToken($query['username'], $user_profile['id'], $facebook_access_token);
-
-            $facebook_id = $user_profile['id'];
+    //Check for errors
+    if ($fql_query_obj->error):
+        // check to see if this is an oAuth error:
+        if ($fql_query_obj->error->type== "OAuthException"):
+            // Retrieving a valid access token.
+            $dialog_url = "https://www.facebook.com/dialog/oauth?"
+                . "client_id=" . $facebook_app_id
+                . "&redirect_uri=" . urlencode($facebook_auth_url);
+            echo("<script> top.location.href='" . $dialog_url
+                . "'</script>");
         else:
-            $loginUrl = $facebook->getLoginUrl();
+            echo "other error has happened";
         endif;
+    else:
+        // display results of fql query
+        echo '<pre>';
+        print_r("query results:");
+        print_r($fql_query_obj);
+        echo "<br><br>";
     endif;
 endif;
 
 ?>
-
-<html>
-<head>
-    <title>Facebook Callback</title>
-</head>
-<body>
-<?php if ($user): ?>
-    <h3>Session</h3>
-    <pre><?php print_r($_SESSION); ?></pre>
-
-    <h3>Cookies</h3>
-    <pre><?php print_r($_COOKIE); ?></pre>
-
-    <h3>Your User Object (/me)</h3>
-    <pre><?php print_r($user_profile); ?></pre>
-
-    <h3>Your ID</h3>
-    <pre><?php print_r($facebook_id); ?></pre>
-
-    <h3>Your Access Token</h3>
-    <pre><?php print_r($facebook_access_token); ?></pre>
-<?php else: ?>
-    <a href="<?php echo $loginUrl; ?>"><?php echo $loginUrl; ?></a>
-<?php endif ?>
-</body>
-</html>
