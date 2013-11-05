@@ -45,7 +45,8 @@ else:
         if ($fql_query_obj->error->type== "OAuthException"):
             // Retrieving a valid access token.
             $dialog_url = "https://www.facebook.com/dialog/oauth?"
-                . "client_id=" . $facebook_app_id
+                . "scope=" . $facebook_scope
+                . "&client_id=" . $facebook_app_id
                 . "&redirect_uri=" . urlencode($facebook_auth_url);
             echo("<script> top.location.href='" . $dialog_url
                 . "'</script>");
