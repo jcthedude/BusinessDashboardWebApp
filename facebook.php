@@ -39,6 +39,12 @@ else:
     $fql_query_result = curl_get_file_contents($fql_query_url);
     $fql_query_obj = json_decode($fql_query_result);
 
+    $fql_query_url2 = 'https://graph.facebook.com/fql?q='
+        . 'SELECT+name,+page_url,+about+FROM+page+WHERE+page_id+IN+(SELECT+page_id+FROM+page_admin+WHERE+uid+=+me())'
+        . '&access_token=' . $access_token;
+    $fql_query_result2 = curl_get_file_contents($fql_query_url2);
+    $fql_query_obj2 = json_decode($fql_query_result2);
+
     //Check for errors
     if ($fql_query_obj->error):
         // check to see if this is an oAuth error:
@@ -56,8 +62,14 @@ else:
     else:
         // display results of fql query
         echo '<pre>';
-        print_r("query results:");
+        print_r("query result 1:");
         print_r($fql_query_obj);
+        echo '</pre>';
+        echo "<br><br>";
+        echo '<pre>';
+        print_r("query result 2:");
+        print_r($fql_query_obj2);
+        echo '</pre>';
         echo "<br><br>";
     endif;
 endif;
