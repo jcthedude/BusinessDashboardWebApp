@@ -62,13 +62,13 @@ else:
     else:
         // display results of fql query
         echo '<pre>';
-        print_r("query result 1:");
-        print_r($fql_query_obj);
+        print_r("Pages:");
+        print_r($fql_query_obj2);
         echo '</pre>';
         echo "<br><br>";
         echo '<pre>';
-        print_r("query result 2:");
-        print_r($fql_query_obj2);
+        print_r("Friends:");
+        print_r($fql_query_obj);
         echo '</pre>';
         echo "<br><br>";
     endif;
