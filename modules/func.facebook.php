@@ -1,5 +1,57 @@
 <?php
 
+function setFacebookUser($username, $facebook_uid, $facebook_name)
+{
+    if (empty($facebook_uid)):
+        echo "No Facebook user was given for addition.";
+    else:
+        global $coll;
+        $coll->update(array('username' => $username),
+            array('$addToSet' => array('facebook_user' => array('facebook_uid' => $facebook_uid, 'facebook_name' => $facebook_name)
+            )));
+        return true;
+    endif;
+}
+
+function setFacebookPage($username, $facebook_page_id, $facebook_name)
+{
+    if (empty($facebook_page_id)):
+        echo "No Facebook page was given for addition.";
+    else:
+        global $coll;
+        $coll->update(array('username' => $username),
+            array('$addToSet' => array('facebook_page' => array('facebook_page_id' => $facebook_page_id, 'facebook_name' => $facebook_name)
+            )));
+        return true;
+    endif;
+}
+
+function deleteFacebookUser($username, $facebook_username)
+{
+    if (empty($facebook_username)):
+        echo "No Facebook user was given for deletion.";
+    else:
+        global $coll;
+        $coll->update(array('username' => $username),
+            array('$pull' => array('facebook_user' => array('facebook_username' => $facebook_username)
+            )));
+        return true;
+    endif;
+}
+
+function deleteFacebookPage($username, $facebook_page_id)
+{
+    if (empty($facebook_page_id)):
+        echo "No Facebook page was given for deletion.";
+    else:
+        global $coll;
+        $coll->update(array('username' => $username),
+            array('$pull' => array('facebook_page' => array('facebook_page_id' => $facebook_page_id)
+            )));
+        return true;
+    endif;
+}
+
 function setFacebookAccessToken($username, $facebook_access_token)
 {
     if (empty($facebook_access_token)):
@@ -37,7 +89,7 @@ function getFacebookAccessToken($code)
 function getFacebookUser($access_token)
 {
     $fql_query_url = 'https://graph.facebook.com/fql?q='
-        . 'SELECT+first_name,+last_name,+username+FROM+user+WHERE+uid+=+me()'
+        . 'SELECT+first_name,+last_name,+uid+FROM+user+WHERE+uid+=+me()'
         . '&access_token=' . $access_token;
     return curl_get_file_contents($fql_query_url);
 }
@@ -45,7 +97,7 @@ function getFacebookUser($access_token)
 function getFacebookPages($access_token)
 {
     $fql_query_url = 'https://graph.facebook.com/fql?q='
-        . 'SELECT+name,+page_url,+about+FROM+page+WHERE+page_id+IN+(SELECT+page_id+FROM+page_admin+WHERE+uid+=+me())'
+        . 'SELECT+name,+page_url,+page_id+FROM+page+WHERE+page_id+IN+(SELECT+page_id+FROM+page_admin+WHERE+uid+=+me())'
         . '&access_token=' . $access_token;
     return curl_get_file_contents($fql_query_url);
 }
