@@ -1,5 +1,20 @@
 <?php
 
+function callFacebookAuth()
+{
+    global $facebook_app_id;
+    global $facebook_auth_url;
+    global $facebook_scope;
+
+    $dialog_url = "https://www.facebook.com/dialog/oauth?"
+        . "scope=" . $facebook_scope
+        . "&client_id=" . $facebook_app_id
+        . "&redirect_uri=" . urlencode($facebook_auth_url);
+    echo("<script> top.location.href='" . $dialog_url . "'</script>");
+
+    return true;
+}
+
 function setFacebookUser($username, $facebook_uid, $facebook_name)
 {
     if (empty($facebook_uid)):
@@ -102,10 +117,10 @@ function getFacebookPages($access_token)
     return curl_get_file_contents($fql_query_url);
 }
 
-function getFacebookFriends($access_token)
+function getFacebookFriends($access_token, $facebook_uid)
 {
     $fql_query_url = 'https://graph.facebook.com/fql?q='
-        . 'SELECT+name+FROM+user+WHERE+uid+IN+(SELECT+uid2+FROM+friend+WHERE+uid1+=+me())'
+        . 'SELECT+name+FROM+user+WHERE+uid+IN+(SELECT+uid2+FROM+friend+WHERE+uid1+=+' . $facebook_uid . ')'
         . '&access_token=' . $access_token;
     return curl_get_file_contents($fql_query_url);
 }

@@ -17,14 +17,8 @@ else:
 
     if(isset($query['facebook_access_token'])):
         $access_token = $query['facebook_access_token'];
-    endif;
-
-    $code = $_REQUEST["code"];
-
-    // get user access_token
-    if (isset($code)):
-        $access_token = getFacebookAccessToken($code);
-        setFacebookAccessToken($query['username'], $access_token);
+    else:
+        callFacebookAuth();
     endif;
 
     // run fql query
@@ -33,17 +27,10 @@ else:
 
     //Check for errors
     if ($fql_query_user->error):
-        // check to see if this is an oAuth error:
         if ($fql_query_user->error->type== "OAuthException"):
-            // Retrieving a valid access token.
-            $dialog_url = "https://www.facebook.com/dialog/oauth?"
-                . "scope=" . $facebook_scope
-                . "&client_id=" . $facebook_app_id
-                . "&redirect_uri=" . urlencode($facebook_auth_url);
-            echo("<script> top.location.href='" . $dialog_url
-                . "'</script>");
+            callFacebookAuth();
         else:
-            echo "other error has happened";
+            echo "Other Facebook authentication error has happened";
         endif;
     endif;
 

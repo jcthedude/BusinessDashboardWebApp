@@ -13,7 +13,8 @@ else:
     print("</br><a href=\"ga-get-profile.php"."\">Manage Google Analytics Profile</a>");
     print("</br><a href=\"ga-get-data-month.php"."\">Get Google Analytics Monthly Data</a>");
     print("</br><a href=\"ga-get-data-year.php"."\">Get Google Analytics Yearly Data</a>");
-    print("</br><a href=\"facebook.php"."\">Manage Facebook Account</a>");
+    print("</br><a href=\"facebook-get-user.php"."\">Manage Facebook Account</a>");
+    print("</br><a href=\"facebook-get-data.php"."\">Get Facebook Data</a>");
     print("</br><a href=\"yelp-get-business.php"."\">Manage Yelp Business</a>");
     print("</br><a href=\"yelp-get-data.php"."\">Get Yelp Data</a>");
     print("</br><a href=\"places-get-business.php"."\">Manage Google Places Business</a>");
@@ -22,9 +23,9 @@ else:
     print("</br><a href=\"citysearch-get-data.php"."\">Get Citysearch Data</a>");
     print("</br><a href=\"twitter-get-user.php"."\">Manage Twitter User</a>");
     print("</br><a href=\"twitter-get-data.php"."\">Get Twitter Data</a>");
-    echo "<br>";
+    echo '<br>';
     print("</br><a href=\"session-data.php"."\">See Session Data</a>");
-    echo "<br><br>";
+    echo '<br><br>';
 
     try {
         $query = $coll->find();
@@ -35,7 +36,7 @@ else:
             echo '<pre>';
             print_r($obj);
             echo '</pre>';
-            echo "<br><br>";
+            echo '<br><br>';
         endforeach;
     } catch (MongoConnectionException $e) {
         die('Error connecting to MongoDB server');

@@ -35,7 +35,7 @@ $radius                         = '30000';
 //Facebook API variables
 $facebook_app_id                = '321008764707304';
 $facebook_app_secret            = '4f106746a8187a69eef790a5fe9211c2';
-$facebook_auth_url              = 'http://localhost:8888/business_dashboard_app/facebook.php';
+$facebook_auth_url              = 'http://localhost:8888/business_dashboard_app/facebook-auth-callback.php';
 $facebook_scope                 = 'publish_actions,manage_pages';
 
 //Yelp API variables
