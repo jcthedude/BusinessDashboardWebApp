@@ -104,7 +104,16 @@ function getFacebookAccessToken($code)
 function getFacebookUser($access_token)
 {
     $fql_query_url = 'https://graph.facebook.com/fql?q='
-        . 'SELECT+first_name,+last_name,+uid+FROM+user+WHERE+uid+=+me()'
+        . 'SELECT+name,+uid+FROM+user+WHERE+uid+=+me()'
+        . '&access_token=' . $access_token;
+    return curl_get_file_contents($fql_query_url);
+}
+
+function getFacebookUserDetails($access_token, $facebook_uid)
+{
+    $fql_query_url = 'https://graph.facebook.com/fql?q={'
+        . '"user_details":"SELECT+name,+profile_url,+friend_count,+friend_request_count,+pic_square,+pic_big+FROM+user+WHERE+uid+=+' . $facebook_uid . '",'
+        . '"friend_list":"SELECT+name+FROM+user+WHERE+uid+IN+(SELECT+uid2+FROM+friend+WHERE+uid1+=+' . $facebook_uid . ')"}'
         . '&access_token=' . $access_token;
     return curl_get_file_contents($fql_query_url);
 }
@@ -117,10 +126,10 @@ function getFacebookPages($access_token)
     return curl_get_file_contents($fql_query_url);
 }
 
-function getFacebookFriends($access_token, $facebook_uid)
+function getFacebookPageDetails($access_token, $facebook_page_id)
 {
-    $fql_query_url = 'https://graph.facebook.com/fql?q='
-        . 'SELECT+name+FROM+user+WHERE+uid+IN+(SELECT+uid2+FROM+friend+WHERE+uid1+=+' . $facebook_uid . ')'
+    $fql_query_url = 'https://graph.facebook.com/fql?q={'
+        . '"page_details":"SELECT+name,+about,+page_url,+checkins,+fan_count,+new_like_count,+talking_about_count,+were_here_count,+pic_square,+pic_big+FROM+page+WHERE+page_id+=+' . $facebook_page_id . '"}'
         . '&access_token=' . $access_token;
     return curl_get_file_contents($fql_query_url);
 }

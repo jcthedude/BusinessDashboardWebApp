@@ -35,7 +35,7 @@ else:
     endif;
 
     foreach ($fql_query_user['data'] as $user_add):
-        $dropdown_user_add .= "<option value='" . $user_add['uid'] . "*" . $user_add['first_name'] . " " . $user_add['last_name'] . "'>" . $user_add['first_name'] . " " . $user_add['last_name'] . "</option>";
+        $dropdown_user_add .= "<option value='" . $user_add['uid'] . "*" . $user_add['name'] . "'>" . $user_add['name'] . "</option>";
     endforeach;
 
     foreach ($fql_query_page['data'] as $page_add):
