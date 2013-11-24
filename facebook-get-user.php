@@ -85,30 +85,6 @@ else:
     if(isset($_POST["reauthorize"])):
         callFacebookAuth();
     endif;
-
-    if(isset($_POST["posttowall"])):
-        foreach ($query['facebook_user'] as $obj_user):
-            $fql_query_post = json_decode(postFacebook($access_token, $obj_user['facebook_uid']), true);
-            echo '<pre>';
-            echo 'Access Token';
-            echo '<br>';
-            print_r($access_token);
-            echo '</pre>';
-            echo '<br><br>';
-            echo '<pre>';
-            echo 'UID';
-            echo '<br>';
-            print_r($obj_user['facebook_uid']);
-            echo '</pre>';
-            echo '<br><br>';
-            echo '<pre>';
-            echo 'Returned Data';
-            echo '<br>';
-            print_r($fql_query_post);
-            echo '</pre>';
-            echo '<br><br>';
-        endforeach;
-    endif;
 endif;
 
 ?>
@@ -206,18 +182,6 @@ endif;
             </td>
             <td>
                 <input name="reauthorize" type="submit" value="Reauthorize Business Dashboard App if your page isn't showing">
-            </td>
-        </tr>
-    </table>
-</form>
-<form action="<?=$_SERVER["PHP_SELF"];?>" method="POST">
-    <table>
-        <tr>
-            <td>
-                &nbsp;
-            </td>
-            <td>
-                <input name="posttowall" type="submit" value="Post To Wall">
             </td>
         </tr>
     </table>

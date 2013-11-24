@@ -60,6 +60,100 @@ else:
         endforeach;
     endif;
 
+    if(isset($_POST["user"])):
+        // First check that required fields have been filled in.
+        if (empty($_POST['post_user'])):
+            $errors['post_user'] = "Post cannot be empty.";
+        endif;
+    endif;
+
+    if(isset($_POST["user"]) && empty($errors)):
+        foreach ($query['facebook_user'] as $obj_user):
+            $fql_query_post = postFacebookUser($_POST['post_user'], $access_token, $obj_user['facebook_uid']);
+
+            if (isset($fql_query_post['id'])):
+                echo 'Post was published.';
+            else:
+                echo 'Post was not published.';
+                print_r($fql_query_post);
+            endif;
+        endforeach;
+    endif;
+
+    if(isset($_POST["page"])):
+        // First check that required fields have been filled in.
+        if (empty($_POST['post_page'])):
+            $errors['post_page'] = "Post cannot be empty.";
+        endif;
+    endif;
+
+    if(isset($_POST["page"]) && empty($errors)):
+        foreach ($query['facebook_page'] as $obj_user):
+            $fql_query_post = postFacebookPage($_POST['post_page'], $access_token, $obj_user['facebook_page_id']);
+
+            if (isset($fql_query_post['id'])):
+                echo 'Post was published.';
+            else:
+                echo 'Post was not published.';
+                print_r($fql_query_post);
+            endif;
+        endforeach;
+    endif;
+
 endif;
 
 ?>
+
+<html>
+<head>
+    <title>Get Facebook Data and Post</title>
+</head>
+<body>
+<form action="<?=$_SERVER["PHP_SELF"];?>" method="POST">
+    <table>
+        <tr>
+            <td>
+                Post to User wall:
+            </td>
+            <td>
+                <input type="text" name="post_user" value="">
+                    <span class="error">
+                        <?php echo isset($errors['post_user']) ? $errors['post_user'] : ''; ?>
+                    </span><br />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+            <td>
+                <input name="user" type="submit" value="Post">
+            </td>
+        </tr>
+    </table>
+</form>
+<form action="<?=$_SERVER["PHP_SELF"];?>" method="POST">
+    <table>
+        <tr>
+            <td>
+                Post to Page wall:
+            </td>
+            <td>
+                <input type="text" name="post_page" value="">
+                    <span class="error">
+                        <?php echo isset($errors['post_page']) ? $errors['post_page'] : ''; ?>
+                    </span><br />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+            <td>
+                <input name="page" type="submit" value="Post">
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
