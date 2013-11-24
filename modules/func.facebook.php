@@ -134,6 +134,22 @@ function getFacebookPageDetails($access_token, $facebook_page_id)
     return curl_get_file_contents($fql_query_url);
 }
 
+function postFacebook($access_token, $facebook_uid)
+{
+    $ch = curl_init();
+    $timeout = 5;
+    curl_setopt($ch, CURLOPT_URL, 'https://graph.facebook.com/' . $facebook_uid . '/feed?');
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, 'message=message2' . '&access_token=' . $access_token);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+    $data = curl_exec($ch);
+    curl_close($ch);
+    $result = json_decode($data, true);
+    print_r($result);
+    return curl_get_file_contents($result);
+}
+
 // note this wrapper function exists in order to circumvent PHP’s
 //strict obeying of HTTP error codes.  In this case, Facebook
 //returns error code 400 which PHP obeys and wipes out

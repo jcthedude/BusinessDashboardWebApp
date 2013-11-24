@@ -20,8 +20,8 @@ else:
             $fql_query_user = json_decode(getFacebookUserDetails($access_token, $obj_user['facebook_uid']), true);
 
             //Check for errors
-            if ($fql_query_user->error):
-                if ($fql_query_user->error->type== "OAuthException"):
+            if ($fql_query_user['error']):
+                if ($fql_query_user['error']['type'] == "OAuthException"):
                     callFacebookAuth();
                 else:
                     echo "Other Facebook authentication error has happened";
@@ -43,8 +43,8 @@ else:
             $fql_query_page = json_decode(getFacebookPageDetails($access_token, $obj_page['facebook_page_id']), true);
 
             //Check for errors
-            if ($fql_query_page->error):
-                if ($fql_query_page->error->type== "OAuthException"):
+            if ($fql_query_page['error']):
+                if ($fql_query_page['error']['type'] == "OAuthException"):
                     callFacebookAuth();
                 else:
                     echo "Other Facebook authentication error has happened";
