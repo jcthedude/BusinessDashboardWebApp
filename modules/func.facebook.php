@@ -86,9 +86,16 @@ function getFacebookPages($access_token)
 function getFacebookPageDetails($access_token, $facebook_page_id)
 {
     $fql_query_url = 'https://graph.facebook.com/fql?q={'
-        . '"page_details":"SELECT+name,+about,+page_url,+checkins,+fan_count,+new_like_count,+talking_about_count,+were_here_count,+pic_square,+pic_big+FROM+page+WHERE+page_id+=+' . $facebook_page_id . '"}'
+        . '"page_details":"SELECT+name,+app_id,+about,+page_url,+checkins,+fan_count,+new_like_count,+talking_about_count,+were_here_count,+pic_square,+pic_big+FROM+page+WHERE+page_id+=+' . $facebook_page_id . '"}'
         . '&access_token=' . $access_token;
     return curl_get_file_contents($fql_query_url);
+}
+
+function getFacebookPageFeed($access_token, $facebook_page_id)
+{
+    $opengraph_query_url = 'https://graph.facebook.com/' . $facebook_page_id
+        . '/feed?access_token=' . $access_token;
+    return curl_get_file_contents($opengraph_query_url);
 }
 
 function postFacebookPage($message, $access_token, $facebook_page_id)

@@ -16,8 +16,9 @@ else:
 
     if(isset($query['facebook_page'])):
         foreach ($query['facebook_page'] as $obj_page):
-            //Run fql query
+            //Run fql and opengraph queries
             $fql_query_page = json_decode(getFacebookPageDetails($access_token, $obj_page['facebook_page_id']), true);
+            $opengraph_query_page = json_decode(getFacebookPageFeed($access_token, $obj_page['facebook_page_id']), true);
 
             //Check for errors
             if ($fql_query_page['error']):
@@ -28,12 +29,48 @@ else:
                 endif;
             endif;
 
-            echo '<pre>';
             echo 'Page Details:';
             echo '<br>';
+            echo '<pre>';
             print_r($fql_query_page);
             echo '</pre>';
             echo '<br><br>';
+
+//            echo '<pre>';
+//            echo 'Page Feed:';
+//            echo '<br>';
+//            print_r($opengraph_query_page);
+//            echo '</pre>';
+//            echo '<br><br>';
+
+            echo 'Page Feed:';
+            echo '<br>';
+            foreach ($opengraph_query_page['data'] as $obj):
+                echo '<pre>';
+                echo $obj['from']['name'];
+                echo '<br>';
+                echo $obj['message'];
+                echo '<br>';
+                if (isset ($obj['likes']['data'])):
+                    echo 'Likes: ' . count($obj['likes']['data']);
+                else: echo 'Likes: 0';
+                endif;
+                echo '<br>';
+                if (isset ($obj['comments']['data'])):
+                    echo '     Comments';
+                    echo '<br>';
+                    foreach ($obj['comments']['data'] as $obj2):
+                        echo '     ' . $obj2['from']['name'];
+                        echo '<br>';
+                        echo '     ' . $obj2['message'];
+                        echo '<br>';
+                        echo '     ' . 'Likes: '. $obj2['like_count'];
+                        echo '<br>';
+                    endforeach;
+                endif;
+                echo '</pre>';
+                echo '<br><br>';
+            endforeach;
         endforeach;
     endif;
 
@@ -70,7 +107,7 @@ endif;
     <table>
         <tr>
             <td>
-                Post to Page wall:
+                Post to Page Wall:
             </td>
             <td>
                 <input type="text" name="post_page" value="">
