@@ -105,6 +105,7 @@ endif;
                                     <div class="controls row">
                                         <div class="input-group col-sm-12">
                                             <input type="password" class="form-control" name="password" maxlength="30"/>
+                                            <span class="input-group-addon"><i class="fa fa-key"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -118,6 +119,7 @@ endif;
                                     <div class="controls row">
                                         <div class="input-group col-sm-12">
                                             <input type="password" class="form-control" name="password_confirm" maxlength="30"/>
+                                            <span class="input-group-addon"><i class="fa fa-key"></i></span>
                                         </div>
                                     </div>
                                 </div>
