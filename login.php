@@ -86,7 +86,7 @@ endif;
 
                         </form>
 
-                        <a class="pull-left" href="old_password-reset.php">Forgot Password?</a>
+                        <a class="pull-left" href="password-reset.php">Forgot Password?</a>
                         <a class="pull-right" href="register.php">Sign Up!</a>
 
                         <div class="clearfix"></div>
