@@ -1,6 +1,7 @@
 <?php
 
 include_once("modules/config.php");
+include_once("modules/func.user.php");
 include_once("modules/class.user.php");
 
 if(loggedIn()):
@@ -10,7 +11,7 @@ endif;
 
 $hasher = new PasswordHash(8, FALSE);
 
-if(isset($_POST["submit"])):
+if(isset($_POST["login"])):
     $query = $coll->findOne(array('username' => $_POST['username']));
 
     if (isset($query['password']) && $query['password'] == $hasher->CheckPassword($_POST['password'], $query['password'])):
@@ -21,77 +22,80 @@ if(isset($_POST["submit"])):
     endif;
 endif;
 
-if(isset($_POST["forgot_password"])):
-    header('Location: password-reset.php');
-    exit();
-endif;
-
-if(isset($_POST["register"])):
-    header('Location: register.php');
-    exit();
-endif;
-
 ?>
 
-<html>
-<head>
-    <title>Simple Login with MongoDB</title>
+<?php include_once 'header.php'; ?>
 </head>
 <body>
-<?php if (isset($error)): ?>
-    <p class="error"><?php echo $error; ?></p>
-<?php endif; ?>
-<form action="<?=$_SERVER["PHP_SELF"];?>" method="POST">
-    <table>
-        <tr>
-            <td>
-                Username:
-            </td>
-            <td>
-                <input type="text" name="username" value="<?php print isset($_POST["username"]) ? $_POST["username"] : "" ; ?>" maxlength="30">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Password:
-            </td>
-            <td>
-                <input type="password" name="password" value="" maxlength="30">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Remember Me:
-            </td>
-            <td>
-                <input type="checkbox" name="remember_me">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                &nbsp;
-            </td>
-            <td>
-                <input name="submit" type="submit" value="Submit">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                &nbsp;
-            </td>
-            <td>
-                <input name="forgot_password" type="submit" value="Forgot Password">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                &nbsp;
-            </td>
-            <td>
-                <input name="register" type="submit" value="Register">
-            </td>
-        </tr>
-    </table>
-</form>
+    <div class="container">
+        <div class="row">
+            <div id="content" class="col-sm-12 full">
+                <div class="row">
+                    <div class="login-box">
+
+                        <div class="header">
+                            Login to Littix
+                        </div>
+                        <p>
+                            <a class="btn btn-facebook"><span>Login via Facebook</span></a>
+                        </p>
+                        <p>
+                            <a class="btn btn-twitter"><span>Login via Twitter</span></a>
+                        </p>
+
+                        <div class="text-with-hr">
+                            <span>or use your username</span>
+                        </div>
+
+                        <form class="form-horizontal login" action="<?=$_SERVER["PHP_SELF"];?>" method="POST">
+                            <fieldset class="col-sm-12">
+                                <div class="form-group">
+                                    <div class="controls row">
+                                        <div class="input-group col-sm-12">
+                                            <input type="text" class="form-control" name="username" placeholder="Username"  maxlength="30"/>
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="controls row">
+                                        <div class="input-group col-sm-12">
+                                            <input type="password" class="form-control" name="password" placeholder="Password" maxlength="30"/>
+                                            <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <?php if (isset($error)): ?>
+                                    <div class="row">
+                                        <a class="pull-left"><?php echo $error; ?></a>
+                                    </div>
+                                <?php endif; ?>
+
+                                <div class="confirm">
+                                    <input type="checkbox" name="remember_me"/>
+                                    <label for="remember_me">Remember me</label>
+                                </div>
+
+                                <div class="row">
+                                    <button type="submit" name="login" class="btn btn-lg btn-primary col-xs-12">Login</button>
+                                </div>
+
+                            </fieldset>
+
+                        </form>
+
+                        <a class="pull-left" href="old_password-reset.php">Forgot Password?</a>
+                        <a class="pull-right" href="register.php">Sign Up!</a>
+
+                        <div class="clearfix"></div>
+
+                    </div><!--/login-box-->
+                </div><!--/row-->
+            </div><!--/content-->
+        </div><!--/row-->
+    </div><!--/container-->
+    <?php include_once 'footer.php'; ?>
 </body>
 </html>

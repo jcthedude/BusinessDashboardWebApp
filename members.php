@@ -24,7 +24,8 @@ else:
     print("</br><a href=\"twitter-get-user.php"."\">Manage Twitter User</a>");
     print("</br><a href=\"twitter-get-data.php"."\">Get Twitter Data</a>");
     echo '<br>';
-    print("</br><a href=\"session-data.php"."\">See Session Data</a>");
+    print("</br><a href=\"dev_session-data.php"."\">See Session Data</a>");
+    print("</br><a href=\"dev_destroy.php"."\">Destroy Session Data</a>");
     echo '<br><br>';
 
     try {

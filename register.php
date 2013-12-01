@@ -1,6 +1,7 @@
 <?php
 
 include_once("modules/config.php");
+include_once("modules/func.user.php");
 include_once("modules/class.user.php");
 
 if(loggedIn()):
@@ -8,7 +9,7 @@ if(loggedIn()):
     exit();
 endif;
 
-if(isset($_POST["submit"])):
+if(isset($_POST["create"])):
     $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
 
     // First check that required fields have been filled in.
@@ -32,7 +33,7 @@ if(isset($_POST["submit"])):
     endif;
 endif;
 
-if (isset($_POST["submit"]) && empty($errors)):
+if (isset($_POST["create"]) && empty($errors)):
     $hasher = new PasswordHash(8, FALSE);
     $password = $hasher->HashPassword($_POST['password']);
     $token = md5(uniqid(mt_rand(), true));
@@ -56,74 +57,101 @@ endif;
 
 ?>
 
-<html>
-<head>
-    <title>Simple Register with MongoDB</title>
+<?php include_once 'header.php'; ?>
 </head>
 <body>
-<form action="<?=$_SERVER["PHP_SELF"];?>" method="POST">
-    <table>
-        <tr>
-            <td>
-                Login:
-            </td>
-            <td>
-                <input type="text" name="username" value="<?php print isset($_POST["username"]) ? $_POST["username"] : "" ; ?>" maxlength="30">
-                    <span class="error">
-                        <?php echo isset($errors['username']) ? $errors['username'] : ''; ?>
-                    </span><br />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Email Address:
-            </td>
-            <td>
-                <input type="email" name="email" value="<?php print isset($_POST["email"]) ? $_POST["email"] : "" ; ?>">
-                    <span class="error">
-                        <?php echo isset($errors['email']) ? $errors['email'] : ''; ?>
-                    </span><br />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Password:
-            </td>
-            <td>
-                <input type="password" name="password" value="" maxlength="30">
-                    <span class="error">
-                        <?php echo isset($errors['password']) ? $errors['password'] : ''; ?>
-                    </span><br />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Confirm password:
-            </td>
-            <td>
-                <input type="password" name="password_confirm" value="" maxlength="30">
-                    <span class="error">
-                        <?php echo isset($errors['password_confirm']) ? $errors['password_confirm'] : ''; ?>
-                    </span><br />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Remember Me:
-            </td>
-            <td>
-                <input type="checkbox" name="remember_me">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                &nbsp;
-            </td>
-            <td>
-                <input name="submit" type="submit" value="Submit">
-            </td>
-        </tr>
-    </table>
-</form>
+    <div class="container">
+        <div class="row">
+            <div id="content" class="col-sm-12 full">
+                <div class="row">
+                    <div class="login-box">
+
+                        <div class="header">
+                            Create your account
+                        </div>
+
+                        <form class="form-horizontal login" action="<?=$_SERVER["PHP_SELF"];?>" method="POST">
+                            <fieldset class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="control-label" for="username">Username</label>
+                                    <div class="controls row">
+                                        <div class="input-group col-sm-12">
+                                            <input type="text" class="form-control" name="username" value="<?php print isset($_POST["username"]) ? $_POST["username"] : "" ; ?>" maxlength="30"/>
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <span class="label label-important"><?php echo isset($errors['username']) ? $errors['username'] : ''; ?></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="username">Email</label>
+                                    <div class="controls row">
+                                        <div class="input-group col-sm-12">
+                                            <input type="text" class="form-control" name="email" value="<?php print isset($_POST["email"]) ? $_POST["email"] : "" ; ?>"/>
+                                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <span class="label label-important"><?php echo isset($errors['email']) ? $errors['email'] : ''; ?></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="password">Password</label>
+                                    <div class="controls row">
+                                        <div class="input-group col-sm-12">
+                                            <input type="password" class="form-control" name="password" maxlength="30"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <span class="label label-important"><?php echo isset($errors['password']) ? $errors['password'] : ''; ?></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="password">Confirm Password</label>
+                                    <div class="controls row">
+                                        <div class="input-group col-sm-12">
+                                            <input type="password" class="form-control" name="password_confirm" maxlength="30"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <span class="label label-important"><?php echo isset($errors['password_confirm']) ? $errors['password_confirm'] : ''; ?></span>
+                                </div>
+
+                                <div class="confirm">
+                                    <input type="checkbox" name="remember_me"/>
+                                    <label for="remember_me">Remember Me</label>
+                                </div>
+
+
+                                <div class="row">
+                                    <button type="submit" name="create" class="btn btn-primary col-xs-12">Create Account!</button>
+                                </div>
+                            </fieldset>
+
+                        </form>
+
+                        <div class="text-with-hr">
+                            <span>or use your facebook account</span>
+                        </div>
+
+                        <p>
+                            <a class="btn btn-facebook"><span>Register via Facebook</span></a>
+                        </p>
+
+                    </div><!--/login-box-->
+                </div><!--/row-->
+            </div><!--/content-->
+        </div><!--/row-->
+    </div><!--/container-->
+<?php include_once 'footer.php'; ?>
 </body>
 </html>
