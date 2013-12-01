@@ -24,6 +24,7 @@ if (isset($_POST["reset"]) && empty($errors)):
 
     if ($query):
         passwordChange($query["username"], $password, $token);
+        sendMail($_POST["email"], "", $user_password, "password-reset");
         flushMemberSession();
     else:
         $errors['general'] = "Incorrect username/email, try again";
@@ -82,7 +83,7 @@ endif;
                     <?php if (isset($user_password)): ?>
                         <div class="alert alert-success">
                             <button type="button" class="close" data-dismiss="alert">×</button>
-                            <strong>Password Changed! </strong> Your new password is: <?php echo $user_password; ?>
+                            <strong>Your new password is: <?php echo $user_password; ?> </strong> We've also sent an email with this new password.
                         </div>
 
                         <form class="form-horizontal login" action="<?=$_SERVER["PHP_SELF"];?>" method="POST">

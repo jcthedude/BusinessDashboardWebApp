@@ -39,7 +39,7 @@ if (isset($_POST["submit"]) && empty($errors)):
     if (isset($query['password']) && $query['password'] == $hasher->CheckPassword($_POST['password_old'], $query['password'])):
         passwordChange($query["username"], $password, $token);
         cleanMemberSession($query["username"], $_POST["remember_me"]);
-        sendMail($query["email"], "", "password-change");
+        sendMail($query["email"], "", "", "password-change");
         header("Location: members.php");
     else:
         $errors['password_old'] = "Old password is incorrect.";

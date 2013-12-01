@@ -46,7 +46,7 @@ if (isset($_POST["create"]) && empty($errors)):
     if (empty($query)):
         newUser($_POST["username"], $password, $_POST["email"], $token);
         cleanMemberSession($_POST["username"], $_POST["remember_me"]);
-        sendMail($_POST["email"], "", "register");
+        sendMail($_POST["email"], "", "", "register");
         header("Location: members.php");
     elseif ($query['username'] == $_POST['username']):
         $errors['username'] = "That username is already in use.";
