@@ -1,8 +1,10 @@
 <?php
 
 include_once("modules/func.facebook.views.php");
+include_once("modules/func.twitter.views.php");
 
-$facebook_fans = facebookFans();
+$facebook_fans = getFacebookFans();
+$twitter_followers = getTwitterFollowers();
 
 ?>
 
@@ -20,7 +22,7 @@ $facebook_fans = facebookFans();
                         <i class="fa fa-desktop blue"></i>
                         <span class="title">Website Page Views</span>
                         <span class="value">9999</span>
-                        <a href="" class="more">
+                        <a href="google-analytics.php" class="more">
                             <span>View More</span>
                             <i class="fa fa-chevron-right"></i>
                         </a>
@@ -33,7 +35,7 @@ $facebook_fans = facebookFans();
                         <i class="fa fa-group red"></i>
                         <span class="title">Website Unique Visitors</span>
                         <span class="value">9999</span>
-                        <a href="" class="more">
+                        <a href="google-analytics.php" class="more">
                             <span>View More</span>
                             <i class="fa fa-chevron-right"></i>
                         </a>
@@ -46,7 +48,7 @@ $facebook_fans = facebookFans();
                         <i class="fa fa-facebook green"></i>
                         <span class="title">Facebook Fans</span>
                         <span class="value"><?php print isset($facebook_fans) ? $facebook_fans : "N/A" ; ?></span>
-                        <a href="" class="more">
+                        <a href="facebook.php" class="more">
                             <span>View More</span>
                             <i class="fa fa-chevron-right"></i>
                         </a>
@@ -58,8 +60,8 @@ $facebook_fans = facebookFans();
                     <div class="smallstat box">
                         <i class="fa fa-twitter grey"></i>
                         <span class="title">Twitter Followers</span>
-                        <span class="value">9999</span>
-                        <a href="" class="more">
+                        <span class="value"><?php print isset($twitter_followers) ? $twitter_followers : "N/A" ; ?></span>
+                        <a href="twitter.php" class="more">
                             <span>View More</span>
                             <i class="fa fa-chevron-right"></i>
                         </a>

@@ -3,7 +3,7 @@
 include_once("config.php");
 include_once("func.facebook.php");
 
-function facebookFans()
+function getFacebookFans()
 {
     global $coll;
     $query = $coll->findOne(array('username' => $_SESSION["username"]));

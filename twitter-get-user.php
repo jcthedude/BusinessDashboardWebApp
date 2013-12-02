@@ -4,8 +4,7 @@ include_once('modules/config.php');
 include_once('modules/class.twitter.php');
 
 if(!loggedIn()):
-    header('Location: login.php');
-    exit();
+    echo '<script> window.location="login.php"; </script> ';
 else:
     $query = $coll->findOne(array('username' => $_SESSION["username"]));
     $twitter_oauth_token = $query['twitter_oauth_token'];
@@ -31,8 +30,7 @@ else:
                 $dropdown_add .= "<option value='" . $obj_add['screen_name'] . "'>" . $obj_add['screen_name'] . "</option>";
             endforeach;
         else:
-            header('Location: twitter-login.php');
-            exit();
+            echo '<script> window.location="twitter-login.php"; </script> ';
         endif;
     endif;
 
