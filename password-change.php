@@ -4,8 +4,7 @@ include_once("modules/config.php");
 include_once("modules/class.user.php");
 
 if(!loggedIn()):
-    header('Location: login.php');
-    exit();
+    echo '<script> window.location="login.php"; </script> ';
 endif;
 
 if(isset($_POST["submit"])):
@@ -40,7 +39,7 @@ if (isset($_POST["submit"]) && empty($errors)):
         passwordChange($query["username"], $password, $token);
         cleanMemberSession($query["username"], $_POST["remember_me"]);
         sendMail($query["email"], "", "", "password-change");
-        header("Location: dashboard.php");
+        echo '<script> window.location="dashboard.php"; </script> ';
     else:
         $errors['password_old'] = "Old password is incorrect.";
     endif;

@@ -5,8 +5,7 @@ include_once("modules/func.user.php");
 include_once("modules/class.user.php");
 
 if(loggedIn()):
-    header('Location: members.php');
-    exit();
+    echo '<script> window.location="dashboard.php"; </script> ';
 endif;
 
 $hasher = new PasswordHash(8, FALSE);

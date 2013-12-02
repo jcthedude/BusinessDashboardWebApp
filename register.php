@@ -5,8 +5,7 @@ include_once("modules/func.user.php");
 include_once("modules/class.user.php");
 
 if(loggedIn()):
-    header('Location: dashboard.php');
-    exit();
+    echo '<script> window.location="dashboard.php"; </script> ';
 endif;
 
 if(isset($_POST["create"])):
@@ -47,7 +46,7 @@ if (isset($_POST["create"]) && empty($errors)):
         newUser($_POST["username"], $password, $_POST["email"], $token);
         cleanMemberSession($_POST["username"], $_POST["remember_me"]);
         sendMail($_POST["email"], "", "", "register");
-        header("Location: dashboard.php");
+        echo '<script> window.location="dashboard.php"; </script> ';
     elseif ($query['username'] == $_POST['username']):
         $errors['username'] = "That username is already in use.";
     elseif ($query['email']  == $_POST['email']):

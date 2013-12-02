@@ -4,8 +4,7 @@ include_once("modules/config.php");
 include_once("modules/class.user.php");
 
 if(!loggedIn()):
-    header('Location: login.php');
-    exit();
+    echo '<script> window.location="login.php"; </script> ';
 endif;
 
 $query = $coll->findOne(array('username' => $_SESSION["username"]));

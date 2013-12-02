@@ -1,10 +1,11 @@
 <?php
 
 include_once("modules/config.php");
+include_once("modules/func.user.php");
+include_once("modules/class.user.php");
 
 if(!loggedIn()):
-    header('Location: login.php');
-    exit();
+    echo '<script> window.location="login.php"; </script> ';
 else:
    $username = $_SESSION["username"];
 endif;
