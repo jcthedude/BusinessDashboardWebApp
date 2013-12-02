@@ -12,7 +12,7 @@ else:
 
     if (!isset($query['ga_refresh_token'])):
         echo "No Google Analytics refresh token was found.";
-        header('Location: members.php');
+        header('Location: dashboard.php');
         exit();
     else:
         $access_token = getAccessToken($refresh_token);

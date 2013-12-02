@@ -30,7 +30,7 @@ else:
         exit();
     else:
         echo "No Google Analytics code was returned.";
-        header('Location: members.php');
+        header('Location: dashboard.php');
         exit();
     endif;
 endif;

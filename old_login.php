@@ -4,7 +4,7 @@ include_once("modules/config.php");
 include_once("modules/class.user.php");
 
 if(loggedIn()):
-    header('Location: members.php');
+    header('Location: dashboard.php');
     exit();
 endif;
 
@@ -15,7 +15,7 @@ if(isset($_POST["submit"])):
 
     if (isset($query['password']) && $query['password'] == $hasher->CheckPassword($_POST['password'], $query['password'])):
         cleanMemberSession($_POST["username"], $_POST["remember_me"]);
-        echo'<script> window.location="members.php"; </script> ';
+        echo '<script> window.location="dashboard.php"; </script> ';
     else:
         $error = "Incorrect login/password, try again";
     endif;

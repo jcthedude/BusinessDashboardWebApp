@@ -16,7 +16,7 @@ if(isset($_POST["login"])):
 
     if (isset($query['password']) && $query['password'] == $hasher->CheckPassword($_POST['password'], $query['password'])):
         cleanMemberSession($_POST["username"], $_POST["remember_me"]);
-        echo'<script> window.location="members.php"; </script> ';
+        echo '<script> window.location="dashboard.php"; </script> ';
     else:
         $error = "Incorrect login/password, try again";
     endif;

@@ -40,7 +40,7 @@ if (isset($_POST["submit"]) && empty($errors)):
         passwordChange($query["username"], $password, $token);
         cleanMemberSession($query["username"], $_POST["remember_me"]);
         sendMail($query["email"], "", "", "password-change");
-        header("Location: members.php");
+        header("Location: dashboard.php");
     else:
         $errors['password_old'] = "Old password is incorrect.";
     endif;

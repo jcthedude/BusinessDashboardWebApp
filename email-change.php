@@ -33,7 +33,7 @@ if (isset($_POST["submit"]) && empty($errors)):
         sendMail($_POST['email'], $old_email, "", "email-change");
 
         echo "Your email address has been changed to: " . $_POST['email'];
-        print("</br><a href=\"members.php"."\">Members Area</a>");
+        print("</br><a href=\"dashboard.php"."\">Members Area</a>");
         exit();
     else:
         $errors['general'] = "There was an error, try again";
