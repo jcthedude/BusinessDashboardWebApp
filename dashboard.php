@@ -1,8 +1,11 @@
 <?php
 
+include_once("modules/func.ga.views.php");
 include_once("modules/func.facebook.views.php");
 include_once("modules/func.twitter.views.php");
 
+$page_views = getPageViews();
+$unique_visitors = getUniqueVisitors();
 $facebook_fans = getFacebookFans();
 $twitter_followers = getTwitterFollowers();
 
@@ -21,7 +24,7 @@ $twitter_followers = getTwitterFollowers();
                     <div class="smallstat box">
                         <i class="fa fa-desktop blue"></i>
                         <span class="title">Website Page Views</span>
-                        <span class="value">9999</span>
+                        <span class="value"><?php print isset($page_views) ? $page_views : "N/A" ; ?></span>
                         <a href="google-analytics.php" class="more">
                             <span>View More</span>
                             <i class="fa fa-chevron-right"></i>
@@ -34,7 +37,7 @@ $twitter_followers = getTwitterFollowers();
                     <div class="smallstat box">
                         <i class="fa fa-group red"></i>
                         <span class="title">Website Unique Visitors</span>
-                        <span class="value">9999</span>
+                        <span class="value"><?php print isset($unique_visitors) ? $unique_visitors : "N/A" ; ?></span>
                         <a href="google-analytics.php" class="more">
                             <span>View More</span>
                             <i class="fa fa-chevron-right"></i>
