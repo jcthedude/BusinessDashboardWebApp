@@ -3,17 +3,14 @@
 include_once('modules/config.php');
 
 if(!loggedIn()):
-    header('Location: login.php');
-    exit();
+    echo '<script> window.location="login.php"; </script> ';
 else:
     $query = $coll->findOne(array('username' => $_SESSION["username"]));
     $refresh_token = $query['ga_refresh_token'];
     $result_properties = [];
 
     if (!isset($query['ga_refresh_token'])):
-        echo "No Google Analytics refresh token was found.";
-        header('Location: dashboard.php');
-        exit();
+        echo '<script> window.location="' . $get_ga_code_url . '"; </script> ';
     else:
         $access_token = getAccessToken($refresh_token);
 

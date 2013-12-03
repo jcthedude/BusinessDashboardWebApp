@@ -124,7 +124,7 @@ function getAccessToken($refresh_token)
     endif;
 }
 
-function getRefreshToken($username, $refresh_token)
+function setRefreshToken($username, $refresh_token)
 {
     if (empty($refresh_token)):
         echo "No Google Analytics refresh token was given.";
@@ -137,7 +137,7 @@ function getRefreshToken($username, $refresh_token)
     endif;
 }
 
-function getWebProperty($username, $ga_property_id, $ga_property_name)
+function setWebProperty($username, $ga_property_id, $ga_property_name)
 {
     if (empty($ga_property_id)):
         echo "No Google Analytics web property ID was given for addition.";

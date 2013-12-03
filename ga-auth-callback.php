@@ -3,11 +3,9 @@
 include_once('modules/config.php');
 
 if(!loggedIn()):
-    header('Location: login.php');
-    exit();
+    echo '<script> window.location="login.php"; </script> ';
 else:
     $query = $coll->findOne(array('username' => $_SESSION["username"]));
-    $refresh_token = $query['ga_refresh_token'];
 
     //Get refresh token
     if(isset($_GET['code'])):
@@ -24,14 +22,12 @@ else:
         $result = json_decode($data, true);
         $refresh_token = $result['refresh_token'];
 
-        getRefreshToken($query['username'], $refresh_token);
+        setRefreshToken($query['username'], $refresh_token);
 
-        header('Location: ga-get-profile.php');
-        exit();
+        echo '<script> window.location="ga-get-profile.php"; </script> ';
     else:
         echo "No Google Analytics code was returned.";
-        header('Location: dashboard.php');
-        exit();
+        echo '<script> window.location="dashboard.php"; </script> ';
     endif;
 endif;
 

@@ -3,8 +3,7 @@
 include_once("modules/config.php");
 
 if(!loggedIn()):
-    header('Location: login.php');
-    exit();
+    echo '<script> window.location="login.php"; </script> ';
 else:
     print("Welcome to the members page <b>".$_SESSION["username"]."</b><br>\n");
     print("</br><a href=\"logout.php"."\">Logout</a>");
