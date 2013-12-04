@@ -4,10 +4,16 @@ include_once("modules/func.ga.views.php");
 include_once("modules/func.facebook.views.php");
 include_once("modules/func.twitter.views.php");
 
-$page_views = getPageViews();
-$unique_visitors = getUniqueVisitors();
-$facebook_fans = getFacebookFans();
-$twitter_followers = getTwitterFollowers();
+if(!loggedIn()):
+    echo '<script> window.location="login.php"; </script> ';
+else:
+    $page_views_visitors = getPageViewsVisitors();
+    $page_views = $page_views_visitors['ga:pageviews'];
+    $unique_visitors = $page_views_visitors['ga:visitors'];
+
+    $facebook_fans = getFacebookFans();
+    $twitter_followers = getTwitterFollowers();
+endif;
 
 ?>
 
