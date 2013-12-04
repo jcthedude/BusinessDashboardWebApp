@@ -7,9 +7,9 @@ include_once("modules/func.twitter.views.php");
 if(!loggedIn()):
     echo '<script> window.location="login.php"; </script> ';
 else:
-    $page_views_visitors = getPageViewsVisitors();
-    $page_views = $page_views_visitors['ga:pageviews'];
-    $unique_visitors = $page_views_visitors['ga:visitors'];
+    $monthly_metrics = getMonthlyDashboardMetrics();
+    $page_views = $monthly_metrics['totalsForAllResults']['ga:pageviews'];
+    $unique_visitors = $monthly_metrics['totalsForAllResults']['ga:visitors'];
 
     $facebook_fans = getFacebookFans();
     $twitter_followers = getTwitterFollowers();

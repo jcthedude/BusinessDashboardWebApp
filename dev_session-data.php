@@ -16,12 +16,12 @@ include_once("modules/func.ga.views.php");
 include_once("modules/func.facebook.views.php");
 include_once("modules/func.twitter.views.php");
 
-$page_views = getPageViewsVisitors();
+$monthly_metrics = getMonthlyDashboardMetrics();
 
 echo 'Details:';
 echo '<br>';
 echo '<pre>';
-print_r($page_views);
+print_r($monthly_metrics);
 echo '</pre>';
 echo '<br><br>';
 
