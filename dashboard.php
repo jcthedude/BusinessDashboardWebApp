@@ -26,6 +26,7 @@ endif;
     <div id="content" class="col-lg-10 col-sm-11 ">
         <div class="row">
             <div class="row">
+
                 <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
                     <div class="smallstat box">
                         <i class="fa fa-desktop blue"></i>
@@ -79,6 +80,39 @@ endif;
                 <!--/col-->
 
             </div><!--/row-->
+        </div><!--/row-->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h2><i class="fa fa-bar-chart-o"></i>Traffic</h2>
+                        <ul class="nav nav-tabs" id="mainCharts">
+                            <li id="chart24h"><a href="index.html#24h">24h</a></li>
+                            <li id="chartWeek"><a href="index.html#week">week</a></li>
+                            <li id="chartMonth" class="active"><a href="index.html#month">month</a></li>
+                        </ul>
+                    </div>
+                    <div class="box-content">
+                        <div class="tab-content">
+
+                            <div class="tab-pane" id="24h">
+                                <div id="chart-24h" style="height:250px;width:100%;"></div>
+                            </div>
+
+                            <div class="tab-pane" id="week">
+                                <div id="chart-week" style="height:250px;width:100%;"></div>
+                            </div>
+
+                            <div class="tab-pane active" id="month">
+                                <div id="chart-month" style="height:250px;width:100%;"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div><!--/col-->
         </div><!--/row-->
     </div> <!-- end: Content -->
     <?php include_once 'footer.php'; ?>
