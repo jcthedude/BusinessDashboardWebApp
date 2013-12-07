@@ -15,7 +15,7 @@ function getCitysearchBusiness($username, $citysearch_id, $citysearch_name)
 
 function deleteCitysearchBusiness($username, $citysearch_id)
 {
-    if (empty($places_id)):
+    if (empty($citysearch_id)):
         echo "No Citysearch business was given for deletion.";
     else:
         global $coll;
