@@ -10,7 +10,10 @@ function getYelpReviewScore()
 
     if(isset($query['yelp_business'])):
         $result_yelp = makeYelpAPIRequestBusiness($query['yelp_business'][0]['yelp_id']);
-        return $result_yelp['rating'];
+
+        if(isset($result_yelp['rating'])):
+            return $result_yelp['rating'];
+        endif;
     endif;
 }
 

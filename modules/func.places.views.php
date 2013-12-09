@@ -10,7 +10,10 @@ function getPlacesReviewScore()
 
     if(isset($query['places_business'])):
         $result_places = makePlacesAPIRequestBusiness($query['places_business'][0]['places_id']);
-        return $result_places['result']['rating'];
+
+        if(isset($result_places['result']['rating'])):
+            return $result_places['result']['rating'];
+        endif;
     endif;
 }
 

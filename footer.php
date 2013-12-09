@@ -31,11 +31,7 @@
 
 
     <!-- page scripts -->
-    <script src="assets/js/jquery.flot.min.js"></script>
-    <script src="assets/js/jquery.flot.pie.min.js"></script>
-    <script src="assets/js/jquery.flot.stack.min.js"></script>
-    <script src="assets/js/jquery.flot.resize.min.js"></script>
-    <script src="assets/js/jquery.flot.time.min.js"></script>
+    <script src="assets/js/jquery.flot.js"></script>
 
     <!-- theme scripts -->
     <script src="assets/js/custom.min.js"></script>
