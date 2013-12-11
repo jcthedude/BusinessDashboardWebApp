@@ -106,6 +106,7 @@ function postFacebookPage($message, $access_token, $facebook_page_id)
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, 'message=' . $message . '&access_token=' . $access_token);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
     $data = curl_exec($ch);
     curl_close($ch);
@@ -121,6 +122,7 @@ function curl_get_file_contents($URL)
 {
     $c = curl_init();
     curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($c, CURLOPT_SSL_VERIFYPEER, 0);
     curl_setopt($c, CURLOPT_URL, $URL);
     $contents = curl_exec($c);
     $err  = curl_getinfo($c,CURLINFO_HTTP_CODE);
