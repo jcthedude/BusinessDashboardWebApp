@@ -118,7 +118,6 @@ function getAccessToken($refresh_token)
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
         $data = curl_exec($ch);
-        echo 'Result 2: ' . $ch;
         curl_close($ch);
         $result = json_decode($data, true);
         return $result['access_token'];
