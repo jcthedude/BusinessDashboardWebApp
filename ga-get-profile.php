@@ -15,7 +15,6 @@ else:
 
         //Get web properties for account
         if(isset($access_token)):
-            echo $access_token;
             $result_properties = getWebProperties($access_token);
 
             foreach ($result_properties['items'] as $obj_add):
