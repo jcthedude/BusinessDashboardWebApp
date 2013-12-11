@@ -120,7 +120,7 @@ function getAccessToken($refresh_token)
         $data = curl_exec($ch);
         curl_close($ch);
         $result = json_decode($data, true);
-        echo $result;
+        echo 'Result: ' . $result;
         return $result['access_token'];
     endif;
 }
