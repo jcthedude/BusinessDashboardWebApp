@@ -11,8 +11,12 @@ if(!loggedIn()):
     echo '<script> window.location="login.php"; </script> ';
 else:
     $monthly_metrics = getMonthlyDashboardMetrics();
-    $page_views = $monthly_metrics['totalsForAllResults']['ga:pageviews'];
-    $unique_visitors = $monthly_metrics['totalsForAllResults']['ga:visitors'];
+    if(isset($monthly_metrics['totalsForAllResults']['ga:pageviews'])):
+        $page_views = $monthly_metrics['totalsForAllResults']['ga:pageviews'];
+    endif;
+    if(isset($monthly_metrics['totalsForAllResults']['ga:visitors'])):
+        $unique_visitors = $monthly_metrics['totalsForAllResults']['ga:visitors'];
+    endif;
 
     $facebook_fans = getFacebookFans();
     $twitter_followers = getTwitterFollowers();
