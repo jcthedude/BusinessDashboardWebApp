@@ -40,7 +40,7 @@ else:
         $try2 = explode('--',$citysearch_name);
         $citysearch_name = $try2[0];
 
-        getCitysearchBusiness($query['username'], $citysearch_id, $citysearch_name);
+        setCitysearchBusiness($query['username'], $citysearch_id, $citysearch_name);
         echo '<script>parent.window.location.reload(true);</script>';
     endif;
 

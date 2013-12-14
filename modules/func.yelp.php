@@ -1,13 +1,13 @@
 <?php
 
-function getYelpBusiness($username, $yelp_id, $yelp_name)
+function setYelpBusiness($username, $yelp_id, $yelp_name)
 {
     if (empty($yelp_id)):
         echo "No Yelp business was given for addition.";
     else:
         global $coll;
         $coll->update(array('username' => $username),
-            array('$addToSet' => array('yelp_business' => array('yelp_id' => $yelp_id, 'yelp_name' => $yelp_name)
+            array('set' => array('yelp_business' => array('yelp_id' => $yelp_id, 'yelp_name' => $yelp_name)
             )));
         return true;
     endif;

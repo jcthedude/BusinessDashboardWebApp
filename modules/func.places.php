@@ -1,13 +1,13 @@
 <?php
 
-function getPlacesBusiness($username, $places_id, $places_name)
+function setPlacesBusiness($username, $places_id, $places_name)
 {
     if (empty($places_id)):
         echo "No Google Places business was given for addition.";
     else:
         global $coll;
         $coll->update(array('username' => $username),
-            array('$addToSet' => array('places_business' => array('places_id' => $places_id, 'places_name' => $places_name)
+            array('set' => array('places_business' => array('places_id' => $places_id, 'places_name' => $places_name)
             )));
         return true;
     endif;

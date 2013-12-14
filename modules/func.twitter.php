@@ -1,13 +1,13 @@
 <?php
 
-function getTwitterUser($username, $screen_name)
+function setTwitterUser($username, $screen_name)
 {
     if (empty($screen_name)):
         echo "No twitter username was given for addition.";
     else:
         global $coll;
         $coll->update(array('username' => $username),
-            array('$addToSet' => array('twitter_user' => array('screen_name' => $screen_name)
+            array('set' => array('twitter_user' => array('screen_name' => $screen_name)
             )));
         return true;
     endif;
@@ -26,7 +26,7 @@ function deleteTwitterUser($username, $screen_name)
     endif;
 }
 
-function getOAuthToken($username, $access_token)
+function setOAuthToken($username, $access_token)
 {
     if (empty($access_token)):
         echo "No Twitter access token given.";

@@ -41,7 +41,7 @@ else:
         $try2 = explode('--',$places_name);
         $places_name = $try2[0];
 
-        getPlacesBusiness($query['username'], $places_id, $places_name);
+        setPlacesBusiness($query['username'], $places_id, $places_name);
         echo '<script>parent.window.location.reload(true);</script>';
     endif;
 

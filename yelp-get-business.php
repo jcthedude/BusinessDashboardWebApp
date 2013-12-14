@@ -39,7 +39,7 @@ else:
         $yelp_id = $try[0];
         $yelp_name = $try[1];
 
-        getYelpBusiness($query['username'], $yelp_id, $yelp_name);
+        setYelpBusiness($query['username'], $yelp_id, $yelp_name);
         echo '<script>parent.window.location.reload(true);</script>';
     endif;
 

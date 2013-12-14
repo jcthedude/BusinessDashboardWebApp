@@ -190,5 +190,8 @@ endif;
         </div><!--/row-->
     </div> <!-- end: Content -->
     <?php include_once 'footer.php'; ?>
+
+    <!-- inline scripts related to this page -->
+    <script src="assets/js/pages/index.js"></script>
 </body>
 </html>

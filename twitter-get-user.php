@@ -35,7 +35,7 @@ else:
     endif;
 
     if(isset($_POST['submit_add'])):
-        getTwitterUser($query['username'], $_POST['user_add']);
+        setTwitterUser($query['username'], $_POST['user_add']);
         echo '<script>parent.window.location.reload(true);</script>';
     endif;
 

@@ -1,13 +1,13 @@
 <?php
 
-function getCitysearchBusiness($username, $citysearch_id, $citysearch_name)
+function setCitysearchBusiness($username, $citysearch_id, $citysearch_name)
 {
     if (empty($citysearch_id)):
         echo "No Citysearch business was given for addition.";
     else:
         global $coll;
         $coll->update(array('username' => $username),
-            array('$addToSet' => array('citysearch_business' => array('citysearch_id' => $citysearch_id, 'citysearch_name' => $citysearch_name)
+            array('set' => array('citysearch_business' => array('citysearch_id' => $citysearch_id, 'citysearch_name' => $citysearch_name)
             )));
         return true;
     endif;

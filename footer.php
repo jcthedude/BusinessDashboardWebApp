@@ -37,7 +37,4 @@
     <script src="assets/js/custom.min.js"></script>
     <script src="assets/js/core.min.js"></script>
 
-    <!-- inline scripts related to this page -->
-    <script src="assets/js/pages/index.js"></script>
-
     <!-- end: JavaScript-->

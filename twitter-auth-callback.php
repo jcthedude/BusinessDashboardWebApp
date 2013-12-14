@@ -21,7 +21,7 @@ else:
 
     /* Save the access tokens*/
     $query = $coll->findOne(array('username' => $_SESSION["username"]));
-    getOAuthToken($query['username'], $access_token);
+    setOAuthToken($query['username'], $access_token);
 
     /* Remove no longer needed request tokens */
     unset($_SESSION['oauth_token']);
