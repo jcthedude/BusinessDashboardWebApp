@@ -146,7 +146,7 @@ function setWebProperty($username, $ga_property_id, $ga_property_name)
     else:
         global $coll;
         $coll->update(array('username' => $username),
-            array('set' => array('ga_web_property' => array('ga_property_id' => $ga_property_id, 'ga_property_name' => $ga_property_name)
+            array('$set' => array('ga_web_property' => array('ga_property_id' => $ga_property_id, 'ga_property_name' => $ga_property_name)
             )));
         return true;
     endif;

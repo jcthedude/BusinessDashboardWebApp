@@ -7,7 +7,7 @@ function setTwitterUser($username, $screen_name)
     else:
         global $coll;
         $coll->update(array('username' => $username),
-            array('set' => array('twitter_user' => array('screen_name' => $screen_name)
+            array('$set' => array('twitter_user' => array('screen_name' => $screen_name)
             )));
         return true;
     endif;

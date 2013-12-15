@@ -7,7 +7,7 @@ function setYelpBusiness($username, $yelp_id, $yelp_name)
     else:
         global $coll;
         $coll->update(array('username' => $username),
-            array('set' => array('yelp_business' => array('yelp_id' => $yelp_id, 'yelp_name' => $yelp_name)
+            array('$set' => array('yelp_business' => array('yelp_id' => $yelp_id, 'yelp_name' => $yelp_name)
             )));
         return true;
     endif;

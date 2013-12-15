@@ -56,7 +56,7 @@ function setFacebookPage($username, $facebook_page_id, $facebook_name)
     else:
         global $coll;
         $coll->update(array('username' => $username),
-            array('set' => array('facebook_page' => array('facebook_page_id' => $facebook_page_id, 'facebook_name' => $facebook_name)
+            array('$set' => array('facebook_page' => array('facebook_page_id' => $facebook_page_id, 'facebook_name' => $facebook_name)
             )));
         return true;
     endif;

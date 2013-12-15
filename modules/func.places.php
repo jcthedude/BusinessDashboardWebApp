@@ -7,7 +7,7 @@ function setPlacesBusiness($username, $places_id, $places_name)
     else:
         global $coll;
         $coll->update(array('username' => $username),
-            array('set' => array('places_business' => array('places_id' => $places_id, 'places_name' => $places_name)
+            array('$set' => array('places_business' => array('places_id' => $places_id, 'places_name' => $places_name)
             )));
         return true;
     endif;

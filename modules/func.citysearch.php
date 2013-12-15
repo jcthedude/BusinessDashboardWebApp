@@ -7,7 +7,7 @@ function setCitysearchBusiness($username, $citysearch_id, $citysearch_name)
     else:
         global $coll;
         $coll->update(array('username' => $username),
-            array('set' => array('citysearch_business' => array('citysearch_id' => $citysearch_id, 'citysearch_name' => $citysearch_name)
+            array('$set' => array('citysearch_business' => array('citysearch_id' => $citysearch_id, 'citysearch_name' => $citysearch_name)
             )));
         return true;
     endif;
