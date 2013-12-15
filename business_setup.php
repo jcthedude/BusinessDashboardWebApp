@@ -1,17 +1,18 @@
 <?php
 
 include_once('modules/config.php');
-include_once('modules/class.oauth.php');
 include_once("modules/func.user.php");
+include_once('modules/class.oauth.php');
+include_once('modules/func.yelp.php');
 
 if(!loggedIn()):
     echo '<script> window.location="login.php"; </script> ';
 else:
     $query = $coll->findOne(array('username' => $_SESSION["username"]));
 
-    foreach ($query['yelp_business'] as $obj_delete):
-        $dropdown_delete .= "<option value='" . $obj_delete['yelp_id'] . "'>" . $obj_delete['yelp_name'] . "</option>";
-    endforeach;
+    if(isset($query['yelp_business']['yelp_id'])):
+        $dropdown_delete .= "<option value='" . $query['yelp_business']['yelp_id'] . "'>" . $query['yelp_business']['yelp_name'] . "</option>";
+    endif;
 
     if(isset($_POST["search"])):
         // First check that required fields have been filled in.
@@ -81,7 +82,7 @@ endif;
                                             <label class="control-label" for="business_delete">Business Name</label>
                                             <div class="controls">
                                                 <select id="business_delete" name="business_delete" class="form-control">
-                                                    <?php echo $dropdown_delete;?>
+                                                    <?php print isset($dropdown_delete) ? $dropdown_delete : "" ; ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -127,7 +128,7 @@ endif;
                                             <label class="control-label" for="business_add">Results</label>
                                             <div class="controls">
                                                 <select id="business_add" name="business_add" class="form-control">
-                                                    <?php echo $dropdown_add;?>
+                                                    <?php print isset($dropdown_add) ? $dropdown_add : "" ; ?>
                                                 </select>
                                             </div>
                                         </div>

@@ -17,7 +17,7 @@ function getTwitterFollowers()
     if(isset($twitter_oauth_token) && isset($twitter_oauth_token_secret)):
         if(isset($query['twitter_user'])):
             $connection = new TwitterOAuth($twitter_consumer_key, $twitter_consumer_secret, $twitter_oauth_token, $twitter_oauth_token_secret);
-            $content = $connection->get('users/show', array('screen_name' => $query['twitter_user'][0]['screen_name']));
+            $content = $connection->get('users/show', array('screen_name' => $query['twitter_user']['screen_name']));
 
             return $content['followers_count'];
         endif;

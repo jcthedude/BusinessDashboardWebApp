@@ -20,7 +20,7 @@ function deletePlacesBusiness($username, $places_id)
     else:
         global $coll;
         $coll->update(array('username' => $username),
-            array('$pull' => array('places_business' => array('places_id' => $places_id)
+            array('$unset' => array('places_business' => array('places_id' => $places_id)
             )));
         return true;
     endif;

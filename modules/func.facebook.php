@@ -69,7 +69,7 @@ function deleteFacebookPage($username, $facebook_page_id)
     else:
         global $coll;
         $coll->update(array('username' => $username),
-            array('$pull' => array('facebook_page' => array('facebook_page_id' => $facebook_page_id)
+            array('$unset' => array('facebook_page' => array('facebook_page_id' => $facebook_page_id)
             )));
         return true;
     endif;

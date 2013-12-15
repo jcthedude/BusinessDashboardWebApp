@@ -9,7 +9,7 @@ function getCitysearchReviewScore()
     $query = $coll->findOne(array('username' => $_SESSION["username"]));
 
     if(isset($query['citysearch_business'])):
-        $result_citysearch = makeCitysearchAPIRequestBusiness($query['citysearch_business'][0]['citysearch_id']);
+        $result_citysearch = makeCitysearchAPIRequestBusiness($query['citysearch_business']['citysearch_id']);
         $total_rating = 0;
 
         foreach ($result_citysearch['results']['reviews'] as $item):

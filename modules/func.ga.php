@@ -159,7 +159,7 @@ function deleteWebProperty($username, $ga_property_id)
     else:
         global $coll;
         $coll->update(array('username' => $username),
-            array('$pull' => array('ga_web_property' => array('ga_property_id' => $ga_property_id)
+            array('$unset' => array('ga_web_property' => array('ga_property_id' => $ga_property_id)
             )));
         return true;
     endif;

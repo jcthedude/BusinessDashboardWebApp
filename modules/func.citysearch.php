@@ -20,7 +20,7 @@ function deleteCitysearchBusiness($username, $citysearch_id)
     else:
         global $coll;
         $coll->update(array('username' => $username),
-            array('$pull' => array('citysearch_business' => array('citysearch_id' => $citysearch_id)
+            array('$unset' => array('citysearch_business' => array('citysearch_id' => $citysearch_id)
             )));
         return true;
     endif;

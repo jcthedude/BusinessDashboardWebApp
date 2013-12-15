@@ -9,7 +9,7 @@ function getYelpReviewScore()
     $query = $coll->findOne(array('username' => $_SESSION["username"]));
 
     if(isset($query['yelp_business'])):
-        $result_yelp = makeYelpAPIRequestBusiness($query['yelp_business'][0]['yelp_id']);
+        $result_yelp = makeYelpAPIRequestBusiness($query['yelp_business']['yelp_id']);
 
         if(isset($result_yelp['rating'])):
             return $result_yelp['rating'];

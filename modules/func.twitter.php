@@ -20,7 +20,7 @@ function deleteTwitterUser($username, $screen_name)
     else:
         global $coll;
         $coll->update(array('username' => $username),
-            array('$pull' => array('twitter_user' => array('screen_name' => $screen_name)
+            array('$unset' => array('twitter_user' => array('screen_name' => $screen_name)
             )));
         return true;
     endif;

@@ -8,7 +8,7 @@ function getMonthlyDashboardMetrics()
     $query = $coll->findOne(array('username' => $_SESSION["username"]));
 
     $refresh_token = $query['ga_refresh_token'];
-    $property = $query['ga_web_property'][0]['ga_property_id'];
+    $property = $query['ga_web_property']['ga_property_id'];
     $access_token = getAccessToken($refresh_token);
 
     $endDate = date('Y-m-d');

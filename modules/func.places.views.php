@@ -9,7 +9,7 @@ function getPlacesReviewScore()
     $query = $coll->findOne(array('username' => $_SESSION["username"]));
 
     if(isset($query['places_business'])):
-        $result_places = makePlacesAPIRequestBusiness($query['places_business'][0]['places_id']);
+        $result_places = makePlacesAPIRequestBusiness($query['places_business']['places_id']);
 
         if(isset($result_places['result']['rating'])):
             return $result_places['result']['rating'];

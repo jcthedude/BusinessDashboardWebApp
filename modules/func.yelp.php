@@ -20,7 +20,7 @@ function deleteYelpBusiness($username, $yelp_id)
     else:
         global $coll;
         $coll->update(array('username' => $username),
-            array('$pull' => array('yelp_business' => array('yelp_id' => $yelp_id)
+            array('$unset' => array('yelp_business' => array('yelp_id' => $yelp_id)
             )));
         return true;
     endif;
