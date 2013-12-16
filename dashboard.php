@@ -1,5 +1,6 @@
 <?php
 
+include_once('modules/config.php');
 include_once("modules/func.ga.views.php");
 include_once("modules/func.facebook.views.php");
 include_once("modules/func.twitter.views.php");

@@ -1,8 +1,6 @@
 <?php
 
 include_once('modules/config.php');
-include_once('modules/class.oauth.php');
-include_once('modules/func.yelp.php');
 
 $dropdown_delete = NULL;
 $dropdown_add = NULL;
