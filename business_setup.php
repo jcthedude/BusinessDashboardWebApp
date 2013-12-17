@@ -20,6 +20,8 @@ endif;
         <div class="col-xs-12">
 
             <?php include_once 'setup_yelp.php'; ?>
+            <?php include_once 'setup_places.php'; ?>
+            <?php include_once 'setup_citysearch.php'; ?>
 
         </div><!--/col-->
     </div><!--/row-->
