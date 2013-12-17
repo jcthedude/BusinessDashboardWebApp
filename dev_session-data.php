@@ -12,19 +12,16 @@ echo "Cookies";
 echo "<br>";
 print_r($_COOKIE);
 
-include_once("modules/func.ga.views.php");
-include_once("modules/func.facebook.views.php");
-include_once("modules/func.twitter.views.php");
-include_once("modules/func.yelp.views.php");
-include_once("modules/func.places.views.php");
-include_once("modules/func.citysearch.views.php");
+include_once("modules/func.yelp.php");
 
-$result_citysearch = getCitysearchReviewScore();
+$location_yelp = "everett,+wa";
+$business_yelp = "olympic+view+chiropractic";
+$result_yelp = makeYelpAPIRequestSearch($location_yelp, $business_yelp);
 
 echo 'Details:';
 echo '<br>';
 echo '<pre>';
-print_r($result_citysearch);
+print_r($result_yelp);
 echo '</pre>';
 echo '<br><br>';
 

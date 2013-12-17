@@ -28,7 +28,7 @@ if (isset($_POST["search_yelp"]) && empty($errors_yelp)):
     $result_yelp = makeYelpAPIRequestSearch($location_yelp, $business_yelp);
 
     foreach ($result_yelp['businesses'] as $obj_add_yelp):
-        $dropdown_add_yelp .= "<option value='" . $obj_add_yelp['id'] . "*" . $obj_add_yelp['name'] . "'>" . $obj_add_yelp['name'] . "</option>";
+        $dropdown_add_yelp .= "<option value='" . $obj_add_yelp['id'] . "*" . $obj_add_yelp['name'] . "'>" . $obj_add_yelp['name'] . "--" . $obj_add_yelp['location']['address'][0] . " " . $obj_add_yelp['location']['city'] . ", ". $obj_add_yelp['location']['state_code'] . "</option>";
     endforeach;
 endif;
 
@@ -36,6 +36,8 @@ if(isset($_POST['submit_add_yelp'])):
     $try = explode('*',$_POST['business_add_yelp']);
     $yelp_id = $try[0];
     $yelp_name = $try[1];
+    $try2 = explode('--',$yelp_name);
+    $yelp_name = $try2[0];
 
     setYelpBusiness($query['username'], $yelp_id, $yelp_name);
     echo '<script>parent.window.location.reload(true);</script>';
