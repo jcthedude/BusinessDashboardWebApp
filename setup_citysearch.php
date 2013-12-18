@@ -56,7 +56,7 @@ endif;
     <div class="box">
 
         <div class="box-header">
-            <h2><i class="fa fa-star-half-o"></i><span class="break"></span>citysearch</h2>
+            <h2><i class="fa fa-star-half-o"></i><span class="break"></span>Citysearch</h2>
         </div>
 
         <div class="box-content">
