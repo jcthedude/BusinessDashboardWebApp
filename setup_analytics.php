@@ -33,14 +33,33 @@ if(isset($_POST['submit_add_analytics'])):
     $ga_property_name = $try[1];
 
     setWebProperty($query['username'], $ga_property_id, $ga_property_name);
-    echo '<script>parent.window.location.reload(true);</script>';
+
+    $dropdown_add_analytics = NULL;
+
+    $query = $coll->findOne(array('username' => $_SESSION["username"]));
+
+    if(isset($query['ga_web_property']['ga_property_id'])):
+        $dropdown_delete_analytics .= "<option value='" . $query['ga_web_property']['ga_property_id'] . "'>" . $query['ga_web_property']['ga_property_name'] . "</option>";
+    endif;
+
+    $access_token = getAccessToken($refresh_token);
+
+    //Get web properties for account
+    if(isset($access_token)):
+        $result_properties = getWebProperties($access_token);
+
+        foreach ($result_properties['items'] as $obj_add):
+            $dropdown_add_analytics .= "<option value='" . $obj_add['id'] . "*" . $obj_add['name'] . "'>" . $obj_add['name'] . "</option>";
+        endforeach;
+    endif;
 endif;
 
 if(isset($_POST['submit_delete_analytics'])):
     $ga_property_id = $_POST['business_delete_analytics'];
 
     deleteWebProperty($query['username'], $ga_property_id);
-    echo '<script>parent.window.location.reload(true);</script>';
+
+    $dropdown_delete_analytics = NULL;
 endif;
 
 ?>
@@ -71,25 +90,23 @@ endif;
                         </form>
                     </td>
                 </tr>
-                <?php if(isset($dropdown_add_analytics)) : ?>
-                    <tr>
-                        <td>
-                            <h1>Choose Web Property</h1>
-                            <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST" class="form-horizontal col-sm-6">
-                                <div class="form-group">
-                                    <div class="controls">
-                                        <select name="business_add_analytics" class="form-control">
-                                            <?php print isset($dropdown_add_analytics) ? $dropdown_add_analytics : "" ; ?>
-                                        </select>
-                                    </div>
+                <tr>
+                    <td>
+                        <h1>Choose Web Property</h1>
+                        <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST" class="form-horizontal col-sm-6">
+                            <div class="form-group">
+                                <div class="controls">
+                                    <select name="business_add_analytics" class="form-control">
+                                        <?php print isset($dropdown_add_analytics) ? $dropdown_add_analytics : "" ; ?>
+                                    </select>
                                 </div>
-                                <div class="form-actions">
-                                    <button type="submit" name="submit_add_analytics" class="btn btn-primary">Add Web Property</button>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                <?php endif; ?>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" name="submit_add_analytics" class="btn btn-primary">Add Web Property</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
             </table>
 
             <div class="clearfix"></div>

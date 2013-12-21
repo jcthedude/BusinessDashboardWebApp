@@ -41,14 +41,22 @@ if(isset($_POST['submit_add_places'])):
     $places_name = $try2[0];
 
     setPlacesBusiness($query['username'], $places_id, $places_name);
-    echo '<script>parent.window.location.reload(true);</script>';
+
+    $dropdown_add_places = NULL;
+
+    $query = $coll->findOne(array('username' => $_SESSION["username"]));
+
+    if(isset($query['places_business']['places_id'])):
+        $dropdown_delete_places .= "<option value='" . $query['places_business']['places_id'] . "'>" . $query['places_business']['places_name'] . "</option>";
+    endif;
 endif;
 
 if(isset($_POST['submit_delete_places'])):
     $places_id = $_POST['business_delete_places'];
 
     deletePlacesBusiness($query['username'], $places_id);
-    echo '<script>parent.window.location.reload(true);</script>';
+
+    $dropdown_delete_places = NULL;
 endif;
 
 ?>

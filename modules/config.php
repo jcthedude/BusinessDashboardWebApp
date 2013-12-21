@@ -8,6 +8,7 @@ include_once("func.places.php");
 include_once("func.yelp.php");
 include_once("func.twitter.php");
 include_once("class.oauth.php");
+include_once("class.twitter.php");
 include_once("func.citysearch.php");
 
 session_start();

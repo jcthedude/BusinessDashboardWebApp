@@ -40,14 +40,22 @@ if(isset($_POST['submit_add_yelp'])):
     $yelp_name = $try2[0];
 
     setYelpBusiness($query['username'], $yelp_id, $yelp_name);
-    echo '<script>parent.window.location.reload(true);</script>';
+
+    $dropdown_add_yelp = NULL;
+
+    $query = $coll->findOne(array('username' => $_SESSION["username"]));
+
+    if(isset($query['yelp_business']['yelp_id'])):
+        $dropdown_delete_yelp .= "<option value='" . $query['yelp_business']['yelp_id'] . "'>" . $query['yelp_business']['yelp_name'] . "</option>";
+    endif;
 endif;
 
 if(isset($_POST['submit_delete_yelp'])):
     $yelp_id = $_POST['business_delete_yelp'];
 
     deleteYelpBusiness($query['username'], $yelp_id);
-    echo '<script>parent.window.location.reload(true);</script>';
+
+    $dropdown_delete_yelp = NULL;
 endif;
 
 ?>

@@ -21,6 +21,7 @@ endif;
 
             <?php include_once 'setup_analytics.php'; ?>
             <?php include_once 'setup_facebook.php'; ?>
+            <?php include_once 'setup_twitter.php'; ?>
 
         </div><!--/col-->
     </div><!--/row-->

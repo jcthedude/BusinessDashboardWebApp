@@ -40,14 +40,22 @@ if(isset($_POST['submit_add_citysearch'])):
     $citysearch_name = $try2[0];
 
     setCitysearchBusiness($query['username'], $citysearch_id, $citysearch_name);
-    echo '<script>parent.window.location.reload(true);</script>';
+
+    $dropdown_add_citysearch = NULL;
+
+    $query = $coll->findOne(array('username' => $_SESSION["username"]));
+
+    if(isset($query['citysearch_business']['citysearch_id'])):
+        $dropdown_delete_citysearch .= "<option value='" . $query['citysearch_business']['citysearch_id'] . "'>" . $query['citysearch_business']['citysearch_name'] . "</option>";
+    endif;
 endif;
 
 if(isset($_POST['submit_delete_citysearch'])):
     $citysearch_id = $_POST['business_delete_citysearch'];
 
     deleteCitysearchBusiness($query['username'], $citysearch_id);
-    echo '<script>parent.window.location.reload(true);</script>';
+
+    $dropdown_delete_citysearch = NULL;
 endif;
 
 ?>

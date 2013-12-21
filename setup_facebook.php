@@ -41,14 +41,38 @@ if(isset($_POST['submit_add_facebook'])):
     $facebook_name = $try[1];
 
     setFacebookPage($query['username'], $facebook_page_id, $facebook_name);
-    echo '<script>parent.window.location.reload(true);</script>';
+
+    $dropdown_add_facebook = NULL;
+
+    $query = $coll->findOne(array('username' => $_SESSION["username"]));
+
+    if(isset($query['facebook_page']['facebook_page_id'])):
+        $dropdown_delete_facebook .= "<option value='" . $query['facebook_page']['facebook_page_id'] . "'>" . $query['facebook_page']['facebook_name'] . "</option>";
+    endif;
+
+    // run fql query
+    $fql_query_page = json_decode(getFacebookPages($access_token), true);
+
+    //Check for errors
+    if (isset($fql_query_page['error'])):
+        if ($fql_query_page['error']['type'] == "OAuthException"):
+            callFacebookAuth();
+        else:
+            echo "Other Facebook authentication error has happened";
+        endif;
+    endif;
+
+    foreach ($fql_query_page['data'] as $page_add):
+        $dropdown_add_facebook .= "<option value='" . $page_add['page_id'] . "*" . $page_add['name'] . "'>" . $page_add['name'] . "</option>";
+    endforeach;
 endif;
 
 if(isset($_POST['submit_delete_facebook'])):
     $facebook_page_id = $_POST['business_delete_facebook'];
 
     deleteFacebookPage($query['username'], $facebook_page_id);
-    echo '<script>parent.window.location.reload(true);</script>';
+
+    $dropdown_delete_facebook = NULL;
 endif;
 
 if(isset($_POST["reauthorize_facebook"])):
@@ -83,36 +107,34 @@ endif;
                         </form>
                     </td>
                 </tr>
-                <?php if(isset($dropdown_add_facebook)) : ?>
-                    <tr>
-                        <td>
-                            <h1>Choose Page</h1>
-                            <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST" class="form-horizontal col-sm-6">
-                                <div class="form-group">
-                                    <div class="controls">
-                                        <select name="business_add_facebook" class="form-control">
-                                            <?php print isset($dropdown_add_facebook) ? $dropdown_add_facebook : "" ; ?>
-                                        </select>
-                                    </div>
+                <tr>
+                    <td>
+                        <h1>Choose Page</h1>
+                        <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST" class="form-horizontal col-sm-6">
+                            <div class="form-group">
+                                <div class="controls">
+                                    <select name="business_add_facebook" class="form-control">
+                                        <?php print isset($dropdown_add_facebook) ? $dropdown_add_facebook : "" ; ?>
+                                    </select>
                                 </div>
-                                <div class="form-actions">
-                                    <button type="submit" name="submit_add_facebook" class="btn btn-primary">Add Page</button>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h1>Re-authorize Facebook Account</h1>
-                            <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST" class="form-horizontal col-sm-6">
-                                <h4>Click here to re-authorize your account if you don't see your page listed</h4>
-                                <div class="form-actions">
-                                    <button type="submit" name="submit_add_facebook" class="btn btn-primary">Re-authorize</button>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                <?php endif; ?>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" name="submit_add_facebook" class="btn btn-primary">Add Page</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h1>Re-authorize Facebook Account</h1>
+                        <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST" class="form-horizontal col-sm-6">
+                            <h4>Click here to re-authorize your account if you don't see your page listed</h4>
+                            <div class="form-actions">
+                                <button type="submit" name="submit_add_facebook" class="btn btn-primary">Re-authorize</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
             </table>
 
             <div class="clearfix"></div>
