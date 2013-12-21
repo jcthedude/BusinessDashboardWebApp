@@ -19,6 +19,15 @@ endif;
     <div class="row">
         <div class="col-xs-12">
 
+            <?php include_once 'setup_analytics.php'; ?>
+            <?php include_once 'setup_facebook.php'; ?>
+
+        </div><!--/col-->
+    </div><!--/row-->
+
+    <div class="row">
+        <div class="col-xs-12">
+
             <?php include_once 'setup_yelp.php'; ?>
             <?php include_once 'setup_places.php'; ?>
             <?php include_once 'setup_citysearch.php'; ?>
