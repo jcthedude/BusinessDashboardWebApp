@@ -36,6 +36,7 @@ endif;
 if(isset($_POST['submit_add_twitter'])):
     setTwitterUser($query['username'], $_POST['business_add_twitter']);
 
+    $dropdown_delete_twitter = NULL;
     $dropdown_add_twitter = NULL;
 
     $query = $coll->findOne(array('username' => $_SESSION["username"]));
@@ -57,14 +58,14 @@ endif;
     <div class="box">
 
         <div class="box-header">
-            <h2><i class="fa fa-star-half-o"></i><span class="break"></span>Twitter</h2>
+            <h2><i class="fa fa-twitter grey"></i><span class="break"></span>Twitter</h2>
         </div>
 
         <div class="box-content">
             <table class="table">
                 <tr>
                     <td>
-                        <h1>Delete Current User</h1>
+                        <h2>Delete Current User</h2>
                         <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST" class="form-horizontal col-sm-6">
                             <div class="form-group">
                                 <div class="controls">
@@ -81,10 +82,10 @@ endif;
                 </tr>
                 <tr>
                     <td>
-                        <h1>Add New Twitter User</h1>
+                        <h2>Add New Twitter User</h2>
                         <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST" class="form-horizontal col-sm-6">
                             <div class="form-group">
-                                <h4>Username</h4>
+                                <p>Username</p>
                                 <div class="controls">
                                     <input class="form-control" name="username_twitter" type="text" value="<?php print isset($_POST["username_twitter"]) ? $_POST["username_twitter"] : "" ; ?>" maxlength="50">
                                     <span class="error">
@@ -101,7 +102,7 @@ endif;
                 <?php if(isset($dropdown_add_twitter)) : ?>
                     <tr>
                         <td>
-                            <h1>Search Results</h1>
+                            <h2>Search Results</h2>
                             <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST" class="form-horizontal col-sm-6">
                                 <div class="form-group">
                                     <div class="controls">

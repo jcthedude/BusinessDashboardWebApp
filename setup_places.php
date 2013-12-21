@@ -42,6 +42,7 @@ if(isset($_POST['submit_add_places'])):
 
     setPlacesBusiness($query['username'], $places_id, $places_name);
 
+    $dropdown_delete_places = NULL;
     $dropdown_add_places = NULL;
 
     $query = $coll->findOne(array('username' => $_SESSION["username"]));
@@ -65,14 +66,14 @@ endif;
     <div class="box">
 
         <div class="box-header">
-            <h2><i class="fa fa-star-half-o"></i><span class="break"></span>Places</h2>
+            <h2><i class="fa fa-google-plus lightBlue"></i><span class="break"></span>Places</h2>
         </div>
 
         <div class="box-content">
             <table class="table">
                 <tr>
                     <td>
-                        <h1>Delete Current Business</h1>
+                        <h2>Delete Current Business</h2>
                         <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST" class="form-horizontal col-sm-6">
                             <div class="form-group">
                                 <div class="controls">
@@ -89,10 +90,10 @@ endif;
                 </tr>
                 <tr>
                     <td>
-                        <h1>Add New Business</h1>
+                        <h2>Add New Business</h2>
                         <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST" class="form-horizontal col-sm-6">
                             <div class="form-group">
-                                <h4>Location</h4>
+                                <p>Location</p>
                                 <div class="controls">
                                     <input class="form-control" name="location_places" type="text" value="<?php print isset($_POST["location_places"]) ? $_POST["location_places"] : "" ; ?>" maxlength="50">
                                     <span class="error">
@@ -101,7 +102,7 @@ endif;
                                 </div>
                             </div>
                             <div class="form-group">
-                                <h4>Business Name</h4>
+                                <p>Business Name</p>
                                 <div class="controls">
                                     <input class="form-control" name="business_places" type="text" value="<?php print isset($_POST["business_places"]) ? $_POST["business_places"] : "" ; ?>" maxlength="50">
                                     <span class="error">
@@ -118,7 +119,7 @@ endif;
                 <?php if(isset($dropdown_add_places)) : ?>
                     <tr>
                         <td>
-                            <h1>Search Results</h1>
+                            <h2>Search Results</h2>
                             <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST" class="form-horizontal col-sm-6">
                                 <div class="form-group">
                                     <div class="controls">

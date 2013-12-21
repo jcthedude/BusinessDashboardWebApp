@@ -42,6 +42,7 @@ if(isset($_POST['submit_add_facebook'])):
 
     setFacebookPage($query['username'], $facebook_page_id, $facebook_name);
 
+    $dropdown_delete_facebook = NULL;
     $dropdown_add_facebook = NULL;
 
     $query = $coll->findOne(array('username' => $_SESSION["username"]));
@@ -85,14 +86,14 @@ endif;
     <div class="box">
 
         <div class="box-header">
-            <h2><i class="fa fa-star-half-o"></i><span class="break"></span>Facebook</h2>
+            <h2><i class="fa fa-facebook green"></i><span class="break"></span>Facebook</h2>
         </div>
 
         <div class="box-content">
             <table class="table">
                 <tr>
                     <td>
-                        <h1>Delete Current Page</h1>
+                        <h2>Delete Current Page</h2>
                         <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST" class="form-horizontal col-sm-6">
                             <div class="form-group">
                                 <div class="controls">
@@ -109,7 +110,7 @@ endif;
                 </tr>
                 <tr>
                     <td>
-                        <h1>Choose Page</h1>
+                        <h2>Choose Page</h2>
                         <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST" class="form-horizontal col-sm-6">
                             <div class="form-group">
                                 <div class="controls">
@@ -126,9 +127,9 @@ endif;
                 </tr>
                 <tr>
                     <td>
-                        <h1>Re-authorize Facebook Account</h1>
+                        <h2>Re-authorize Facebook Account</h2>
                         <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST" class="form-horizontal col-sm-6">
-                            <h4>Click here to re-authorize your account if you don't see your page listed</h4>
+                            <p>Click here to re-authorize your account if you don't see your page listed</p>
                             <div class="form-actions">
                                 <button type="submit" name="submit_add_facebook" class="btn btn-primary">Re-authorize</button>
                             </div>

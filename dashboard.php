@@ -51,7 +51,7 @@ endif;
                     <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
                         <div class="smallstat box">
                             <i class="fa fa-desktop blue"></i>
-                            <span class="title">Page Views (last 30 days)</span>
+                            <p>Page Views (last 30 days)</p>
                             <span class="value"><?php print isset($page_views) ? $page_views : "N/A" ; ?></span>
                             <a href="google-analytics.php" class="more">
                                 <span>View More Details</span>
@@ -64,7 +64,7 @@ endif;
                     <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
                         <div class="smallstat box">
                             <i class="fa fa-group red"></i>
-                            <span class="title">Visitors (last 30 days)</span>
+                            <p>Visitors (last 30 days)</p>
                             <span class="value"><?php print isset($unique_visitors) ? $unique_visitors : "N/A" ; ?></span>
                             <a href="google-analytics.php" class="more">
                                 <span>View More Details</span>
@@ -77,7 +77,7 @@ endif;
                     <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
                         <div class="smallstat box">
                             <i class="fa fa-facebook green"></i>
-                            <span class="title">Facebook Fans</span>
+                            <p>Facebook Fans</p>
                             <span class="value"><?php print isset($facebook_fans) ? $facebook_fans : "N/A" ; ?></span>
                             <a href="facebook.php" class="more">
                                 <span>View More Details</span>
@@ -90,7 +90,7 @@ endif;
                     <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
                         <div class="smallstat box">
                             <i class="fa fa-twitter grey"></i>
-                            <span class="title">Twitter Followers</span>
+                            <p>Twitter Followers</p>
                             <span class="value"><?php print isset($twitter_followers) ? $twitter_followers : "N/A" ; ?></span>
                             <a href="twitter.php" class="more">
                                 <span>View More Details</span>
@@ -151,7 +151,7 @@ endif;
                     <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
                         <div class="smallstat box">
                             <i class="fa fa-star-half-o pink"></i>
-                            <span class="title">Yelp Review Score</span>
+                            <p>Yelp Review Score</p>
                             <span class="value"><?php print isset($yelp_review_score) ? $yelp_review_score : "N/A" ; ?></span>
                             <a href="yelp.php" class="more">
                                 <span>View More Details</span>
@@ -164,7 +164,7 @@ endif;
                     <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
                         <div class="smallstat box">
                             <i class="fa fa-google-plus lightBlue"></i>
-                            <span class="title">Google Places Review Score</span>
+                            <p>Yelp Review Score</p>
                             <span class="value"><?php print isset($places_review_score) ? $places_review_score : "N/A" ; ?></span>
                             <a href="google-places.php" class="more">
                                 <span>View More Details</span>
@@ -177,7 +177,7 @@ endif;
                     <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
                         <div class="smallstat box">
                             <i class="fa fa-globe darkGreen"></i>
-                            <span class="title">Citysearch Review Score</span>
+                            <p>Citysearch Review Score</p>
                             <span class="value"><?php print isset($citysearch_review_score) ? $citysearch_review_score : "N/A" ; ?></span>
                             <a href="citysearch.php" class="more">
                                 <span>View More Details</span>

@@ -34,6 +34,7 @@ if(isset($_POST['submit_add_analytics'])):
 
     setWebProperty($query['username'], $ga_property_id, $ga_property_name);
 
+    $dropdown_delete_analytics = NULL;
     $dropdown_add_analytics = NULL;
 
     $query = $coll->findOne(array('username' => $_SESSION["username"]));
@@ -68,14 +69,14 @@ endif;
     <div class="box">
 
         <div class="box-header">
-            <h2><i class="fa fa-star-half-o"></i><span class="break"></span>Google Analytics</h2>
+            <h2><i class="fa fa-dashboard blue"></i><span class="break"></span>Google Analytics</h2>
         </div>
 
         <div class="box-content">
             <table class="table">
                 <tr>
                     <td>
-                        <h1>Delete Current Web Property</h1>
+                        <h2>Delete Current Web Property</h2>
                         <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST" class="form-horizontal col-sm-6">
                             <div class="form-group">
                                 <div class="controls">
@@ -92,7 +93,7 @@ endif;
                 </tr>
                 <tr>
                     <td>
-                        <h1>Choose Web Property</h1>
+                        <h2>Choose Web Property</h2>
                         <form action="<?=$_SERVER["PHP_SELF"];?>" method="POST" class="form-horizontal col-sm-6">
                             <div class="form-group">
                                 <div class="controls">
