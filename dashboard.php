@@ -195,7 +195,7 @@ endif;
     <?php include_once 'footer.php'; ?>
 
     <!-- page scripts -->
-    <script src="assets/js/jquery-1.10.3.custom.min.js"></script>
+    <script src="assets/js/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="assets/js/jquery.flot.min.js"></script>
     <script src="assets/js/jquery.flot.time.min.js"></script>
     <script src="assets/js/jquery.flot.resize.min.js"></script>
