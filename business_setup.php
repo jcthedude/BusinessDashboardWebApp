@@ -19,9 +19,9 @@ endif;
     <div class="row">
         <div class="col-xs-12">
 
-            <?php include_once 'setup_analytics.php'; ?>
-            <?php include_once 'setup_facebook.php'; ?>
-            <?php include_once 'setup_twitter.php'; ?>
+            <?php include_once 'modules/setup_analytics.php'; ?>
+            <?php include_once 'modules/setup_facebook.php'; ?>
+            <?php include_once 'modules/setup_twitter.php'; ?>
 
         </div><!--/col-->
     </div><!--/row-->
@@ -29,9 +29,9 @@ endif;
     <div class="row">
         <div class="col-xs-12">
 
-            <?php include_once 'setup_yelp.php'; ?>
-            <?php include_once 'setup_places.php'; ?>
-            <?php include_once 'setup_citysearch.php'; ?>
+            <?php include_once 'modules/setup_yelp.php'; ?>
+            <?php include_once 'modules/setup_places.php'; ?>
+            <?php include_once 'modules/setup_citysearch.php'; ?>
 
         </div><!--/col-->
     </div><!--/row-->

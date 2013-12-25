@@ -29,7 +29,7 @@ if (isset($_POST["search_twitter"]) && empty($errors_twitter)):
             $dropdown_add_twitter .= "<option value='" . $obj_add['screen_name'] . "'>" . $obj_add['screen_name'] . "</option>";
         endforeach;
     else:
-        echo '<script> window.location="twitter-login.php"; </script> ';
+        echo '<script> window.location="../twitter-login.php"; </script> ';
     endif;
 endif;
 
