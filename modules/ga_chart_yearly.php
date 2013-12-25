@@ -1,27 +1,9 @@
 <?php
 
-include_once("modules/config.php");
-
-echo "Session";
-echo "<br>";
-print_r($_SESSION);
-
-echo "<br><br>";
-
-echo "Cookies";
-echo "<br>";
-print_r($_COOKIE);
-
-include_once("modules/func.ga.views.php");
+include_once("config.php");
+include_once("func.ga.views.php");
 
 $yearly_metrics = getYearlyDashboardMetrics();
-
-echo 'Details:';
-echo '<br>';
-echo '<pre>';
-print_r($yearly_metrics);
-echo '</pre>';
-echo '<br><br>';
 
 $chart_data_yearly = array('visitors' => array(), 'new_visits'=> array());
 
