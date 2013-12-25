@@ -27,7 +27,7 @@ function chartYear() {
                     show: true
                 },
                 colors: ["#bdea74", "#2FABE9"],
-                xaxis: {mode: "time", timeformat: "%m/%y", ticks:10, tickDecimals: 0, tickColor: "#fff"},
+                xaxis: {mode: "time", timeformat: "%m/%y", tickColor: "#fff"},
                 yaxis: {ticks:5, tickDecimals: 0, tickColor: "#e9ebec"}
             });
 
@@ -98,7 +98,7 @@ function chartMonth(){
                     show: true
                 },
                 colors: ["#bdea74", "#2FABE9"],
-                xaxis: {mode: "time", timeformat: "%m/%d/%y", ticks: 10, tickDecimals: 0, tickColor: "#fff"},
+                xaxis: {mode: "time", timeformat: "%m/%d/%y", ticks: 10, tickColor: "#fff"},
                 yaxis: {ticks: 5, tickDecimals: 0, tickColor: "#e9ebec"}
             });
 
