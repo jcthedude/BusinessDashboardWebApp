@@ -5,7 +5,7 @@
     <!--<![endif]-->
 
     <!--[if IE]>
-    <script src="assets/js/jquery-1.10.3.min.js"></script>
+    <script src="assets/js/jquery-1.10.2.min.js"></script>
     <![endif]-->
 
     <!--[if !IE]>-->
