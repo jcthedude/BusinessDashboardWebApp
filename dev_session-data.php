@@ -26,7 +26,6 @@ echo '<br><br>';
 $monthly_chart_data = array('visitors' => array(), 'new_visits'=> array());
 
 foreach ($monthly_metrics['rows'] as $obj):
-//    $date = date('Ymd', strtotime($obj[0]));
     $date = date_format(date_create_from_format('Ymd', $obj[0]), 'm-d-y');
 
     array_push($monthly_chart_data['visitors'], array($date, $obj[2]));

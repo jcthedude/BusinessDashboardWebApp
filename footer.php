@@ -32,6 +32,7 @@
 
     <!-- page scripts -->
     <script src="assets/js/jquery.flot.js"></script>
+    <script src="assets/js/jquery.flot.time.js"></script>
 
     <!-- theme scripts -->
     <script src="assets/js/custom.min.js"></script>
