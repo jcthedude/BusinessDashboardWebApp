@@ -191,9 +191,14 @@ endif;
             </div><!--/col-->
         </div><!--/row-->
     </div> <!-- end: Content -->
+
     <?php include_once 'footer.php'; ?>
 
+    <!-- page scripts -->
+    <script src="assets/js/jquery.flot.min.js"></script>
+    <script src="assets/js/jquery.flot.time.min.js"></script>
+
     <!-- inline scripts related to this page -->
-    <script src="assets/js/pages/index.js"></script>
+    <script src="assets/js/pages/dashboard.js"></script>
 </body>
 </html>

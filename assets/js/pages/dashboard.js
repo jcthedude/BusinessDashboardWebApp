@@ -72,9 +72,8 @@ function chartYear() {
 function chartMonth(){
 
     $.getJSON('modules/ga_chart_monthly.php', function(data) {
-        alert(data["visitors"]);
 
-        var plot = $.plot($("#chart-month"),
+        $.plot($("#chart-month"),
             [ { data: data["visitors"], label: "Visitors" },
                 { data: data["new_visits"], label: "New Visits"} ], {
                 series: {
